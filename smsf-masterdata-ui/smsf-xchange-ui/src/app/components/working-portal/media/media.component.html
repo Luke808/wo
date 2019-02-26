@@ -1,0 +1,27 @@
+<div class="card card-wrapper">
+  <div class="c-tool" [hidden]="!showImgDiv">
+    <button pButton type="button" (click)="zoomIn()" icon="fa fa-plus-circle"
+            [label]="cs.L('working-portal.index.zoominBtn')" class="ui-button-action"></button>
+    <button pButton type="button" (click)="zoomOut()" icon="fa fa-minus-circle"
+            [label]="cs.L('working-portal.index.zoomoutBtn')" class="ui-button-action"></button>
+    <button pButton type="button" (click)="left()" icon="fa fa-undo"
+            [label]="cs.L('working-portal.index.leftBtn')" class="ui-button-action"></button>
+    <button pButton type="button" (click)="right()" icon="fa fa-redo"
+            [label]="cs.L('working-portal.index.rightBtn')" class="ui-button-action"></button>
+    <a href="src\assets\new-image-window.html?path={{fileSrc}}" target="_blank">弹出</a>
+  </div>
+  <div class="canvas-wrapper">
+    <canvas id="canvas"></canvas>
+  </div>
+  <div [hidden]="!imgShow">
+    <img id="img" width="100%" height="auto" src="src\assets\init.png">
+  </div>
+  <div [hidden]="!showPdfDiv">
+    <a href="src\assets\password.pdf#toolbar=1&navpanes=1&scrollbar=1&page=1&view=FitH" target="_blank"
+       rel="noopener noreferrer">弹出</a>
+    <object data="src\assets\init.pdf#toolbar=1&navpanes=1&scrollbar=1&page=1&view=FitH"
+            type="application/pdf">
+      <p>unable to open</p>
+    </object>
+  </div>
+</div>

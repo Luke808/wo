@@ -1,0 +1,6 @@
+<div class="ui-g">
+  <div class="ui-g-12 ui-g-padding-15">
+      <p *ngIf="!isAuthorized"><a [routerLink]="['']" translate>authority.pleaseLogin</a></p>
+      <p *ngIf="isAuthorized" translate>{{ 'authority.welcomeName'| translate:{name:claims.name} }}</p>
+  </div>
+</div>

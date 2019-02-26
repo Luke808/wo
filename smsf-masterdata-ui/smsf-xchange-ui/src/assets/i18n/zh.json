@@ -1,0 +1,372 @@
+{
+  "xchange": {
+    "title": "XChange",
+    "data": {
+      "id": "ID"
+    },
+    "message": {
+      "error": "错误",
+      "fail": "失败",
+      "success": "成功",
+      "deleteConfirmation": "确认删除 [{{name}}] 吗?",
+      "deleteMultipleConfirmation": "确认删除全部选中项吗?",
+      "deleteSuccessful": "删除成功",
+      "deleteFailed": "删除失败",
+      "unknownError": "发生未知错误！",
+      "noAuth": "无访问权限，请联系管理员!",
+      "addSuccess": "添加成功",
+      "updateSuccess": "更新成功",
+      "saveSuccess": "保存成功",
+      "inValidData": "非法数据",
+      "alertTitle": "无效操作",
+      "noSuchData": "数据不存在",
+      "duplicateData": "数据重复",
+      "operationFail": "操作失败",
+      "operationSuccess": "操作成功",
+      "errorCode": {
+        "10006": "没有找到匹配的数据!",
+        "34000": "数据不存在",
+        "34001": "更新数据不存在",
+        "34002": "主键冲突",
+        "34003": "数据转换异常",
+        "34100": "获取当前登陆用户失败.",
+        "34101": "Business Case Data 不存在.",
+        "34102": "transaction 调用签收异常.",
+        "34103": "当前case被其他人锁定.",
+        "34104": "获取员工异常.",
+        "34105": "当前登陆eid获取员工信息异常.",
+        "34106": "获取组织结构异常.",
+        "34107": "该数据对当前用户未授权.",
+        "34108": "附件下载不存在文件",
+        "34109": "该数据已产生业务数据，请勿删除.",
+        "34110": "通过id获取组织机构异常.",
+        "34111": "模板错误!",
+        "34112": "没有找到匹配的模板!",
+        "34113": "case已完成或者已终止，操作无效！"
+      }
+    },
+    "reset": "重置",
+    "return": "返回",
+    "nonData": "没有数据",
+    "number": "序号",
+    "add": "添加",
+    "operation": "操作",
+    "edit": "修改",
+    "delete": "删除",
+    "createTime": "创建时间",
+    "batchDelete": "批量删除",
+    "goToHome": "返回主页",
+    "pleaseLogin": "Please login",
+    "welcomeName": "Welcome {{name}}！",
+    "save": "保存",
+    "cancel": "取消",
+    "showAllApp": "显示所有应用",
+    "download": "下载",
+    "upload": "上传",
+    "home": {
+      "title": "zh title",
+      "select": "Change language"
+    },
+    "noncompliance": {
+      "title": "Commons工作记录/不合规",
+      "detailTitle": "不合规信息",
+      "edit": {
+        "editTitle": "编辑",
+        "addTitle": "添加"
+      },
+      "data": {
+        "action": "动作",
+        "closed": "是否关闭",
+        "ncType": "类型",
+        "operator": "操作者",
+        "description": "描述",
+        "createTime": "创建时间",
+        "feedback": "反馈",
+        "feedbackTime": " 反馈时间",
+        "closeTime": "关闭时间"
+      },
+      "message": {
+        "alertTitle": "不合规信息",
+        "ncTypeIsNotNull": "NC类型不能为空.",
+        "descriptionIsNotNull": "描述不能为空.",
+        "closeComfirm": "你确定要关闭这条不合规吗?",
+        "deleteSingle": "你确定要删除这条记录吗?"
+      }
+    },
+    "template": {
+      "title": "模板",
+      "data": {
+        "name": "模板名称",
+        "businessObject": "业务对象",
+        "componentName": "模板组件化名称",
+        "description": "模板描述",
+        "businessProperty": "业务属性",
+        "component": "组件",
+        "componentParam": "组件参数",
+        "index": "排序",
+        "directive": "指令",
+        "width": "格栅宽度",
+        "layout": "布局",
+        "process": "流程",
+        "steps": "步骤",
+        "parameter": "参数",
+        "enable": "启用"
+      },
+      "index": {
+        "title": "模板列表",
+        "basicInfoTitle": "基础信息"
+      },
+      "edit": {
+        "title": "模板编辑",
+        "directive": {
+          "title": "元素指令编辑",
+          "tableTitle": "列表"
+        }
+      },
+      "message": {
+        "selectBusinessObjectFirst": "请先选择业务对象!",
+        "selectProcessObjectFirst": "请先选择流程!",
+        "required": "该项是必填项!",
+        "maxLength": "超过该项允许的最大长度!",
+        "minLength": "小于该项允许的最小长度!"
+      }
+    },
+    "businessObject": {
+      "no": "序号",
+      "name": "名称",
+      "parameters": "参数",
+      "description": "描述",
+      "appTitle": "业务对象",
+      "index": {
+        "appData": "业务对象列表",
+        "addApp": "添加",
+        "deleteApp": "删除",
+        "no": "序号",
+        "name": "名称",
+        "businessDomain": "业务领域",
+        "description": "描述"
+      },
+      "edit": {
+        "appTitle": "编辑业务对象",
+        "appData": "业务对象",
+        "editTitle": "编辑",
+        "basicInfoTitle": "基本信息",
+        "backBtn": "返回",
+        "saveBtn": "保存",
+        "type": "类型",
+        "id": "ID",
+        "parentObject": "父对象",
+        "name": "名称",
+        "businessDomain": "业务领域",
+        "description": "描述",
+        "table": {
+          "title": "属性信息",
+          "no": "序号",
+          "action": "操作",
+          "validation": "校验规则",
+          "name": "名称",
+          "dataType": "数据类型",
+          "length": "长度",
+          "mappingColumn": "字段",
+          "label": "标签",
+          "displayIndex": "显示顺序",
+          "description": "描述"
+        },
+        "validation": {
+          "editTitle": "属性校验设置",
+          "operation": "操作",
+          "id": "属性ID",
+          "name": "属性名",
+          "no": "序号",
+          "validation": "校验规则",
+          "parameters": "参数"
+        }
+      },
+      "add": {
+        "addTitle": "添加"
+      },
+      "message": {
+        "alertTitle": "应用",
+        "nameIsNotNull": "应用名称不能为空",
+        "propertyIdIsNotNull": "请先保存后在进行校验规则录入",
+        "tableDataIsNull": "请录入表格数据后保存",
+        "columnIsNotUnique": "数据表格[{{column}}]非唯一,值[{{value}}]"
+      }
+    },
+    "component": {
+      "id": "Id",
+      "no": "No",
+      "name": "名称",
+      "parameters": "参数",
+      "description": "描述",
+      "index": {
+        "appTitle": "组件",
+        "appData": "组件数据",
+        "addApp": "新增",
+        "deleteApp": "删除"
+      },
+      "edit": {
+        "editTitle": "编辑组件"
+      },
+      "add": {
+        "addTitle": "新增组件"
+      },
+      "message": {
+        "alertTitle": "组件",
+        "nameIsNotNull": "组件名称不能为空"
+      }
+    },
+    "directive": {
+      "id": "Id",
+      "no": "No",
+      "name": "名称",
+      "parameters": "参数",
+      "description": "描述",
+      "index": {
+        "appTitle": "指令",
+        "appData": "指令数据",
+        "addApp": "新增",
+        "deleteApp": "删除"
+      },
+      "edit": {
+        "editTitle": "编辑指令"
+      },
+      "add": {
+        "addTitle": "新增指令"
+      },
+      "message": {
+        "alertTitle": "指令",
+        "nameIsNotNull": "指令名称不能为空"
+      }
+    },
+    "formatValidationRule": {
+      "id": "Id",
+      "no": "No",
+      "name": "名称",
+      "validateType": "验证类型",
+      "validateExpression": "验证表达式",
+      "messages": "信息",
+      "index": {
+        "appTitle": "校验规则",
+        "appData": "规则列表",
+        "addApp": "新增",
+        "deleteApp": "删除"
+      },
+      "edit": {
+        "editTitle": "编辑校验规则"
+      },
+      "add": {
+        "addTitle": "新增校验规则"
+      },
+      "message": {
+        "alertTitle": "校验规则",
+        "nameIsNotNull": "校验规则名称不能为空"
+      }
+    },
+    "working-list": {
+      "no": "订单号",
+      "client-service-level": "业务类别",
+      "business-status": "状态",
+      "data-status": "数据状态",
+      "deadline": "截止时间",
+      "sla": "SLA",
+      "sla-hour": "H",
+      "sla-minute": "M",
+      "receive-time": "接收时间",
+      "complete-time": "完成时间",
+      "operator-name": "操作员",
+      "priority": "优先级",
+      "process": "所属流程",
+      "stepName": "当前步骤",
+      "stepType": "步骤类型",
+      "searchBtn": "查询",
+      "confirmBtn": "确认",
+      "bantchReassignBtn": "重新分配",
+      "message":{
+        "authCheckMsg": "Case数据已完成或者终止.",
+        "hasPending": "Case数据已暂停.请勿重复操作."
+      },
+      "search": {
+        "title": "过滤",
+        "basicInfoTitle": "查询条件",
+        "searchType": "类型",
+        "referenceNo": "单据号",
+        "dataStatus": "数据状态",
+        "deadLine": "截止时间",
+        "receiveTime": "接收时间",
+        "completeTime": "完成时间",
+        "priority": "优先级",
+        "process": "流程",
+        "status": "状态",
+        "isCompleted": "已完成",
+        "isTerminated": "已终止"
+      },
+      "selectPerson": {
+        "title": "选择人员",
+        "basicInfoTitle": "查询条件",
+        "eid": "Eid",
+        "name": "姓名"
+      },
+      "searchAuthTypeOptions": {
+        "ALL": "全部",
+        "MYTASK": "我的任务"
+      },
+      "index": {
+        "appTitle": "任务",
+        "exportApp": "导出",
+        "pauseApp": "暂停",
+        "transaferApp": "转出",
+        "reassignApp": "重新分配",
+        "terminateApp": "终止",
+        "autoAssign": "开始"
+      }
+    },
+    "working-portal": {
+      "index": {
+        "appTitle": "当前任务",
+        "switchBtn": "切换",
+        "pauseBtn": "暂停",
+        "resumeBtn": "重启",
+        "transferBtn": "转出",
+        "reassignBtn": "重新分配",
+        "terminateBtn": "终止",
+        "saveBtn": "保存",
+        "commitBtn": "提交",
+        "returnBtn": "返回",
+        "zoominBtn": "放大",
+        "zoomoutBtn": "缩小",
+        "leftBtn": "向左旋转",
+        "rightBtn": "向右旋转",
+        "popBtn": "弹出"
+      },
+      "message": {
+        "nextConfirmWithNewTask": "提交成功,自动获取新的任务?",
+        "nextConfirmWithoutTask": "提交成功,自动进入任务列表?"
+
+      },
+      "common-information": {
+        "title": "基础信息",
+        "data": {
+          "businessStatus": "业务状态",
+          "comments": "备注",
+          "deadline": "截止时间",
+          "referenceNo": "单据号",
+          "stepId": "当前步骤"
+        }
+      },
+      "attachment": {
+        "title": "附件",
+        "type": "类型",
+        "fileName": "文件名",
+        "status": "状态",
+        "chooseFile": "选择文件",
+        "alertTitle": "附件",
+        "deleteConfirmation": "确认删除 [{{attachmentName}}] 吗?",
+        "mess": {
+          "error_34000": "在BusinessCase没有找到BusinessCaseID",
+          "error_34108": "附件下载错误"
+        }
+      }
+    }
+  }
+}

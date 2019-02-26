@@ -1,0 +1,66 @@
+<div class="ui-g">
+  <div class="ui-g-12 ui-g-padding-15">
+    <smsf-toolbar [title]="cs.L('title')"
+      [subTitle]="[cs.L('formatValidationRule.index.appTitle')]"
+      [total]="totalRecords"
+                  iconClass="fa fa-pencil-ruler" iconBackGroundColor="#FB8C02">
+      <button pButton type="button" (click)="createRule()" icon="fas fa-plus" [label]="cs.L('formatValidationRule.index.addApp')" class="ui-button-success"></button>
+      <button pButton type="button" (click)="deleteMultipleRule($event)" icon="fas fa-trash-alt" [label]="cs.L('formatValidationRule.index.deleteApp')" class="ui-button-danger"></button>
+      <button pButton type="button" icon="fas fa-filter" class="ui-button-action"></button>
+    </smsf-toolbar>
+  </div>
+</div>
+<div class="ui-g">
+  <div class="ui-g-12 padding-t-0">
+    <p-table #table [columns]="tableCols" [value]="tableData" [lazy]="true" (onLazyLoad)="loadPage($event)" [paginator]="true"
+   dataKey="id" [rowHover]="true" [first]="first" [rows]="pageSize" [totalRecords]="totalRecords" [(selection)]="tableSelectedRows" [scrollable]="true" [style]="{width:'100%'}">
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th style="width:40px" class="text-center">
+        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+      </th>
+      <th style="width:40px" class="text-center">{{cs.L('formatValidationRule.no')}}</th>
+      <th style="width:100px" class="text-center">{{cs.L('operation')}}</th>
+      <th style="width:100px">{{cs.L('formatValidationRule.name')}}</th>
+      <th style="width:100px">{{cs.L('formatValidationRule.validateType')}}</th>
+      <th style="width:500px">{{cs.L('formatValidationRule.validateExpression')}}</th>
+      <th style="width:500px">{{cs.L('formatValidationRule.messages')}}</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData let-columns="columns" let-rowIndex="rowIndex">
+    <tr [pSelectableRow]="rowData">
+      <td style="width:40px" class="text-center">
+        <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+      </td>
+      <td style="width:40px" class="text-center">
+        {{rowIndex}}
+      </td>
+      <td style="width:100px" class="operation text-center">
+        <a [title]="cs.L('edit')" href="#" (click)="editRule($event, rowData.id)">
+          <i class="fas fa-pencil-alt"></i>
+        </a>
+        <a [title]="cs.L('delete')" class="action-delete" href="#" (click)="deleteRule($event, rowData)">
+          <i class="fas fa-trash-alt"></i>
+        </a>
+      </td>
+      <td style="width:100px">
+        {{rowData.name}}
+      </td>
+      <td style="width:100px">
+        {{rowData.validateType}}
+      </td>
+      <td style="width:500px">
+        {{rowData.validateExpression}}
+      </td>
+      <td style="width:500px">
+        {{rowData.message}}
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+  </div>
+</div>
+<app-format-validation-rule-edit #editSidebar (reload)="reload()"></app-format-validation-rule-edit>
+
+
+

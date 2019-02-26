@@ -1,0 +1,333 @@
+
+<p-panel header="FreightBill&amp;Audit" [toggleable]="true">
+    <div class="ui-g ui-fluid">
+            <div [class.ui-g-4]="!isFullScreen" [class.ui-g-2]="isFullScreen">
+                <div><label for="creator">Creator</label></div>
+                <div>
+                            <input type="text"     id="creator" name="creator"
+        #string03NgModel="ngModel"
+        [(ngModel)]="model.string03"
+ readonly pInputText>
+                </div>
+            </div>
+            <div [class.ui-g-4]="!isFullScreen" [class.ui-g-2]="isFullScreen">
+                <div><label for="createTime">CreateTime</label></div>
+                <div>
+                            <input type="text"     id="createTime" name="createTime"
+        #string06NgModel="ngModel"
+        [(ngModel)]="model.string06"
+ readonly pInputText>
+                </div>
+            </div>
+            <div [class.ui-g-4]="!isFullScreen" [class.ui-g-2]="isFullScreen">
+                <div><label for="dispatchCountry">Dispatch Country</label></div>
+                <div>
+                            <p-dropdown     id="dispatchCountry" name="dispatchCountry"
+        #string12NgModel="ngModel"
+        [(ngModel)]="model.string12"
+        xChangeDataSource="http://smsf-akzonobel-service/masterdata/selectionList/drop-down"                [(xChangeDataSourceResult)]="string12.parameterValue.options"
+        xChangeDataSourceParam="{&quot;typeCode&quot;:&quot;DCY&quot;}"
+                                    placeholder="Select..."
+                                    [autoWidth]="false"
+                                    [options]="string12.parameterValue.options"></p-dropdown>
+                </div>
+            </div>
+            <div [class.ui-g-4]="!isFullScreen" [class.ui-g-2]="isFullScreen">
+                <div><label for="deliveryCountry">Delivery Country</label></div>
+                <div>
+                            <p-dropdown     id="deliveryCountry" name="deliveryCountry"
+        #string20NgModel="ngModel"
+        [(ngModel)]="model.string20"
+        xChangeDataSourceParam="{&quot;typeCode&quot;:&quot;DCY&quot;}"        xChangeDataSource="http://smsf-akzonobel-service/masterdata/selectionList/drop-down"                [(xChangeDataSourceResult)]="string20.parameterValue.options"
+        required
+                                    placeholder="Select..."
+                                    [autoWidth]="false"
+                                    [options]="string20.parameterValue.options"></p-dropdown>
+                        <div *ngIf="string20NgModel.invalid && (string20NgModel.dirty || string20NgModel.touched)">
+                                <p-message severity="error"
+                                           text="该字段是必填项"
+                                           *ngIf="string20NgModel.errors['required']"></p-message>
+                        </div>
+                </div>
+            </div>
+            <div [class.ui-g-4]="!isFullScreen" [class.ui-g-2]="isFullScreen">
+                <div><label for="loadId">Load ID</label></div>
+                <div>
+                            <input type="text"     id="loadId" name="loadId"
+        #string24NgModel="ngModel"
+        [(ngModel)]="model.string24"
+ pInputText>
+                </div>
+            </div>
+            <div [class.ui-g-4]="!isFullScreen" [class.ui-g-2]="isFullScreen">
+                <div><label for="responseTimeLine">RespinseTimeLine</label></div>
+                <div>
+                            <input type="text"     id="responseTimeLine" name="responseTimeLine"
+        #string02NgModel="ngModel"
+        [(ngModel)]="model.string02"
+ pInputText>
+                </div>
+            </div>
+            <div [class.ui-g-4]="!isFullScreen" [class.ui-g-2]="isFullScreen">
+                <div><label for="buFactory">BU</label></div>
+                <div>
+                            <p-dropdown     id="buFactory" name="buFactory"
+        #string09NgModel="ngModel"
+        [(ngModel)]="model.string09"
+        xChangeDataSource="http://smsf-akzonobel-service/masterdata/selectionList/drop-down"                [(xChangeDataSourceResult)]="string09.parameterValue.options"
+        xChangeDataSourceParam="{&quot;typeCode&quot;:&quot;BU&quot;}"
+                                    placeholder="Select..."
+                                    [autoWidth]="false"
+                                    [options]="string09.parameterValue.options"></p-dropdown>
+                </div>
+            </div>
+            <div [class.ui-g-4]="!isFullScreen" [class.ui-g-2]="isFullScreen">
+                <div><label for="cluster">Cluster</label></div>
+                <div>
+                            <p-dropdown     id="cluster" name="cluster"
+        #string08NgModel="ngModel"
+        [(ngModel)]="model.string08"
+        xChangeDataSource="http://smsf-akzonobel-service/masterdata/selectionList/drop-down"                [(xChangeDataSourceResult)]="string08.parameterValue.options"
+        xChangeDataSourceParam="{&quot;typeCode&quot;:&quot;Cluster&quot;}"
+                                    placeholder="Select..."
+                                    [autoWidth]="false"
+                                    [options]="string08.parameterValue.options"></p-dropdown>
+                </div>
+            </div>
+            <div [class.ui-g-4]="!isFullScreen" [class.ui-g-2]="isFullScreen">
+                <div><label for="updateTime">UpdateTime</label></div>
+                <div>
+                            <input type="text"     id="updateTime" name="updateTime"
+        #string19NgModel="ngModel"
+        [(ngModel)]="model.string19"
+        smsfDateTime readonly pInputText>
+                        <div *ngIf="string19NgModel.invalid && (string19NgModel.dirty || string19NgModel.touched)">
+                                <p-message severity="error"
+                                           text="非法的时间类型"
+                                           *ngIf="string19NgModel.errors['smsfDateTime']"></p-message>
+                        </div>
+                </div>
+            </div>
+            <div [class.ui-g-4]="!isFullScreen" [class.ui-g-2]="isFullScreen">
+                <div><label for="dispatchSite">Dispatch Site</label></div>
+                <div>
+                            <p-dropdown     id="dispatchSite" name="dispatchSite"
+        #string14NgModel="ngModel"
+        [(ngModel)]="model.string14"
+        xChangeDataSource="http://smsf-akzonobel-service/masterdata/selectionList/drop-down"                [(xChangeDataSourceResult)]="string14.parameterValue.options"
+        xChangeDataSourceParam="{&quot;typeCode&quot;:&quot;DS&quot;}"
+                                    placeholder="Select..."
+                                    [autoWidth]="false"
+                                    [options]="string14.parameterValue.options"></p-dropdown>
+                </div>
+            </div>
+            <div [class.ui-g-8]="!isFullScreen" [class.ui-g-4]="isFullScreen">
+                <div><label for="summary">Summary</label></div>
+                <div>
+                            <input type="text"     id="summary" name="summary"
+        #string11NgModel="ngModel"
+        [(ngModel)]="model.string11"
+        required        maxlength="10" pInputText>
+                        <div *ngIf="string11NgModel.invalid && (string11NgModel.dirty || string11NgModel.touched)">
+                                <p-message severity="error"
+                                           text="该字段是必填项"
+                                           *ngIf="string11NgModel.errors['required']"></p-message>
+                                <p-message severity="error"
+                                           text="超过最大长度"
+                                           *ngIf="string11NgModel.errors['maxlength']"></p-message>
+                        </div>
+                </div>
+            </div>
+            <div [class.ui-g-4]="!isFullScreen" [class.ui-g-2]="isFullScreen">
+                <div><label for="tms">TMS Scenario Type</label></div>
+                <div>
+                            <p-dropdown     id="tms" name="tms"
+        #string21NgModel="ngModel"
+        [(ngModel)]="model.string21"
+        xChangeDataSourceParam="{&quot;typeCode&quot;:&quot;SCNR&quot;}"        xChangeDataSource="http://smsf-akzonobel-service/masterdata/selectionList/drop-down"                [(xChangeDataSourceResult)]="string21.parameterValue.options"
+
+                                    placeholder="Select..."
+                                    [autoWidth]="false"
+                                    [options]="string21.parameterValue.options"></p-dropdown>
+                </div>
+            </div>
+            <div [class.ui-g-4]="!isFullScreen" [class.ui-g-2]="isFullScreen">
+                <div><label for="destinationType">Destination Type</label></div>
+                <div>
+                            <p-dropdown     id="destinationType" name="destinationType"
+        #string22NgModel="ngModel"
+        [(ngModel)]="model.string22"
+        xChangeDataSourceParam="{&quot;typeCode&quot;:&quot;DESTTYPE&quot;}"        xChangeDataSource="http://smsf-akzonobel-service/masterdata/selectionList/drop-down"                [(xChangeDataSourceResult)]="string22.parameterValue.options"
+
+                                    placeholder="Select..."
+                                    [autoWidth]="false"
+                                    [options]="string22.parameterValue.options"></p-dropdown>
+                </div>
+            </div>
+            <div [class.ui-g-4]="!isFullScreen" [class.ui-g-2]="isFullScreen">
+                <div><label for="commodityType">Commodity Type</label></div>
+                <div>
+                            <p-dropdown     id="commodityType" name="commodityType"
+        #string23NgModel="ngModel"
+        [(ngModel)]="model.string23"
+        xChangeDataSourceParam="{&quot;typeCode&quot;:&quot;CMDTYTYPE&quot;}"        xChangeDataSource="http://smsf-akzonobel-service/masterdata/selectionList/drop-down"                [(xChangeDataSourceResult)]="string23.parameterValue.options"
+
+                                    placeholder="Select..."
+                                    [autoWidth]="false"
+                                    [options]="string23.parameterValue.options"></p-dropdown>
+                </div>
+            </div>
+            <div [class.ui-g-4]="!isFullScreen" [class.ui-g-2]="isFullScreen">
+                <div><label for="deliveryId">Delivery ID</label></div>
+                <div>
+                            <p-chips     id="deliveryId" name="deliveryId"
+
+                                    #string04NgModel="ngModel"
+                                    [ngModel]="model.string04|split:','"
+                                    (ngModelChange)="$event.length>0?model.string04=$event.join(','):null">
+                            </p-chips>
+                </div>
+            </div>
+            <div [class.ui-g-4]="!isFullScreen" [class.ui-g-2]="isFullScreen">
+                <div><label for="pickupDate">Pick Up Date</label></div>
+                <div>
+                            <input type="text"     id="pickupDate" name="pickupDate"
+        #string25NgModel="ngModel"
+        [(ngModel)]="model.string25"
+ pInputText>
+                </div>
+            </div>
+            <div [class.ui-g-4]="!isFullScreen" [class.ui-g-2]="isFullScreen">
+                <div><label for="deliveryDate">Delivery Date</label></div>
+                <div>
+                            <input type="text"     id="deliveryDate" name="deliveryDate"
+        #string26NgModel="ngModel"
+        [(ngModel)]="model.string26"
+ pInputText>
+                </div>
+            </div>
+            <div [class.ui-g-4]="!isFullScreen" [class.ui-g-2]="isFullScreen">
+                <div><label for="billingPeriodMonths">Billing Period Months</label></div>
+                <div>
+                            <input type="text"     id="billingPeriodMonths" name="billingPeriodMonths"
+        #string27NgModel="ngModel"
+        [(ngModel)]="model.string27"
+ pInputText>
+                </div>
+            </div>
+            <div [class.ui-g-4]="!isFullScreen" [class.ui-g-2]="isFullScreen">
+                <div><label for="cost">Cost</label></div>
+                <div>
+                            <input type="text"     id="cost" name="cost"
+        #string28NgModel="ngModel"
+        [(ngModel)]="model.string28"
+ pInputText>
+                </div>
+            </div>
+            <div [class.ui-g-4]="!isFullScreen" [class.ui-g-2]="isFullScreen">
+                <div><label for="priority">Priority</label></div>
+                <div>
+                            <p-dropdown     id="priority" name="priority"
+        #string30NgModel="ngModel"
+        [(ngModel)]="model.string30"
+
+                                    placeholder="Select..."
+                                    [autoWidth]="false"
+                                    [options]="string30.parameterValue.options"></p-dropdown>
+                </div>
+            </div>
+            <div [class.ui-g-4]="!isFullScreen" [class.ui-g-2]="isFullScreen">
+                <div><label for="carriers">Carriers</label></div>
+                <div>
+                            <p-dropdown     id="carriers" name="carriers"
+        #string29NgModel="ngModel"
+        [(ngModel)]="model.string29"
+        xChangeDataSource="http://smsf-akzonobel-service/organization/client/proxy/carriers/drop-down"                [(xChangeDataSourceResult)]="string29.parameterValue.options"
+        xChangeDataSourceParam="{&quot;creatorId&quot;:&quot;970d0e38-bcc5-4b89-9265-168b3026fad4&quot;}"
+                                    placeholder="Select..."
+                                    [autoWidth]="false"
+                                    [options]="string29.parameterValue.options"></p-dropdown>
+                </div>
+            </div>
+            <div [class.ui-g-8]="!isFullScreen" [class.ui-g-4]="isFullScreen">
+                <div><label for="approvalRequired">Approval Required</label></div>
+                <div>
+                            <p-checkbox     id="approvalRequired" name="approvalRequired"
+
+                                    binary="true"
+                                    #number03NgModel="ngModel"
+                                    [ngModel]="model.number03==1"
+                                    (ngModelChange)="model.number03=$event?1:0"></p-checkbox>
+                </div>
+            </div>
+            <div [class.ui-g-12]="!isFullScreen" [class.ui-g-6]="isFullScreen">
+                <div><label for="description">Description</label></div>
+                <div>
+                            <textarea     id="description" name="description"
+        #string17NgModel="ngModel"
+        [(ngModel)]="model.string17"
+
+                                    width="100%"
+                                    [rows]="string17.parameterValue.rows"
+                                    [cols]="string17.parameterValue.cols"
+                                    pInputTextarea></textarea>
+                </div>
+            </div>
+            <div [class.ui-g-12]="!isFullScreen" [class.ui-g-6]="isFullScreen">
+                <div><label for="answer">Answer</label></div>
+                <div>
+                            <textarea     id="answer" name="answer"
+        #string18NgModel="ngModel"
+        [(ngModel)]="model.string18"
+
+                                    width="100%"
+                                    [rows]="string18.parameterValue.rows"
+                                    [cols]="string18.parameterValue.cols"
+                                    pInputTextarea></textarea>
+                </div>
+            </div>
+            <div [class.ui-g-12]="!isFullScreen" [class.ui-g-6]="isFullScreen">
+                <div><label for="firstResponseTime">Time to first response</label></div>
+                <div>
+                            <app-count-down     id="firstResponseTime" name="firstResponseTime"
+
+                                    [countDownToStr]="model.string32"></app-count-down>
+                </div>
+            </div>
+            <div [class.ui-g-12]="!isFullScreen" [class.ui-g-6]="isFullScreen">
+                <div><label for="completionTime">Time to resolution</label></div>
+                <div>
+                            <app-count-down     id="completionTime" name="completionTime"
+
+                                    [countDownToStr]="model.string33"></app-count-down>
+                </div>
+            </div>
+            <div [class.ui-g-4]="!isFullScreen" [class.ui-g-2]="isFullScreen">
+                <div><label for="assignTo">Assign To</label></div>
+                <div>
+                            <p-dropdown     id="assignTo" name="assignTo"
+        #string31NgModel="ngModel"
+        [(ngModel)]="model.string31"
+
+                                    placeholder="Select..."
+                                    [autoWidth]="false"
+                                    [options]="string31.parameterValue.options"></p-dropdown>
+                </div>
+            </div>
+            <div [class.ui-g-4]="!isFullScreen" [class.ui-g-2]="isFullScreen">
+                <div><label for="assignToUser">user</label></div>
+                <div>
+                            <p-dropdown     id="assignToUser" name="assignToUser"
+        #string34NgModel="ngModel"
+        [(ngModel)]="model.string34"
+        xChangeDataSource="http://smsf-akzonobel-service/organization/client/proxy/employee/drop-down"                [(xChangeDataSourceResult)]="string34.parameterValue.options"
+        xChangeDataSourceParam="{&quot;organization&quot;:&quot;AN&quot;}"
+                                    placeholder="Select..."
+                                    [autoWidth]="false"
+                                    [options]="string34.parameterValue.options"></p-dropdown>
+                </div>
+            </div>
+    </div>
+</p-panel>
+
+

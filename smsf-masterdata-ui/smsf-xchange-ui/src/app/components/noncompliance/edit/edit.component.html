@@ -1,0 +1,49 @@
+<smsf-sidebar [title]="id?cs.L('noncompliance.edit.editTitle'):cs.L('noncompliance.edit.addTitle')" position="right"
+styleClass="ui-sidebar-md" [baseZIndex]="10000" [(visible)]="sidebarVisible">
+  <div class="ui-fluid">
+    <div class="ui-sidebar-label">{{cs.L('noncompliance.data.ncType')}}</div>
+    <div class="ui-sidebar-control">
+        <p-dropdown [options]="ncTypeOptions" [style]="{'width':'100%'}" [(ngModel)]="data.nctypeId" [disabled] ="editFlg"></p-dropdown>
+    </div>
+
+    <div class="ui-sidebar-label">{{cs.L('noncompliance.data.description')}}</div>
+    <div class="ui-sidebar-control">
+        <textarea rows="5" cols="30" maxlength="255" pInputTextarea autoResize="autoResize" 
+        [(ngModel)]="data.description" [disabled] ="editFlg"></textarea>
+    </div>
+    <div class="ui-sidebar-label">{{cs.L('noncompliance.data.feedback')}}</div>
+    <div class="ui-sidebar-control">
+      <textarea rows="5" cols="30" maxlength="255" pInputTextarea autoResize="autoResize" 
+        [(ngModel)]="data.feedback" [disabled] ="editFlg"></textarea>
+    </div>
+
+    <!-- <div class="ui-sidebar-label">{{cs.L('noncompliance.data.createTime')}}</div>
+    <div class="ui-sidebar-control">
+        <p-calendar [(ngModel)]="data.createTime" [showIcon]="true" [showTime]="true"></p-calendar>
+    </div>
+
+    <div class="ui-sidebar-label">{{cs.L('noncompliance.data.operator')}}</div>
+    <div class="ui-sidebar-control">
+        <p-dropdown  [options]="createByOptions" [style]="{'width':'100%'}" [(ngModel)]="data.operatorId"></p-dropdown>
+    </div> -->
+
+    <div class="ui-sidebar-label">{{cs.L('noncompliance.data.feedbackTime')}}</div>
+    <div class="ui-sidebar-control">
+        <p-calendar [(ngModel)]="data.feedbackTime" [showIcon]="true" [showTime]="true" [disabled] ="editFlg"></p-calendar>
+    </div>
+
+    <!-- <div class="ui-sidebar-label">{{cs.L('noncompliance.data.closeTime')}}</div>
+    <div class="ui-sidebar-control">
+        <p-calendar [(ngModel)]="data.closeTime" [showIcon]="true" [showTime]="true" [disabled]="true"></p-calendar>
+    </div> -->
+    <div class="ui-sidebar-label">{{cs.L('noncompliance.data.closed')}}</div>
+    <div class="ui-sidebar-control">
+      <p-inputSwitch [(ngModel)]="data.closed" [disabled] ="editFlg"></p-inputSwitch>
+    </div>
+  </div>
+
+  <div class="ui-sidebar-buttons">
+      <button pButton type="button" (click)="close()" [label]="cs.L('cancel')" class="ui-button-secondary"></button>
+      <button pButton type="button" (click)="save()" [label]="cs.L('save')" class="ui-button-info" [disabled] ="editFlg"></button>
+    </div>
+</smsf-sidebar>

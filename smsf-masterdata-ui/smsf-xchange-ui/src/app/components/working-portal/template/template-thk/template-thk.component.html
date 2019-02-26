@@ -1,0 +1,566 @@
+<p-panel header="THK" [toggleable]="true">
+  <div class="ui-g ui-fluid">
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="PublishPreProject">是否发行前工程</label></div>
+      <div>
+        <p-dropdown id="PublishPreProject" name="PublishPreProject"
+                    #string01NgModel="ngModel"
+                    [(ngModel)]="model.string01"
+                    integer
+                    placeholder="Select..."
+                    [autoWidth]="false"
+                    [options]="string01.parameterValue.options"></p-dropdown>
+        <div *ngIf="string01NgModel.invalid && (string01NgModel.dirty || string01NgModel.touched)">
+          <p-message severity="error"
+                     text="item must an integer"
+                     *ngIf="string01NgModel.errors['integer']"></p-message>
+        </div>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="POSendMail">PO Send mail</label></div>
+      <div>
+        <p-inputSwitch id="POSendMail" name="POSendMail"
+
+                       #number01NgModel="ngModel"
+                       [ngModel]="model.number01==1"
+                       (ngModelChange)="model.number01=$event?1:0"></p-inputSwitch>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="PublishTogether">同时发行</label></div>
+      <div>
+        <p-checkbox id="PublishTogether" name="PublishTogether"
+
+                    binary="true"
+                    #number02NgModel="ngModel"
+                    [ngModel]="model.number02==1"
+                    (ngModelChange)="model.number02=$event?1:0"></p-checkbox>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="IsOffLine">线下处理</label></div>
+      <div>
+        <p-checkbox id="IsOffLine" name="IsOffLine"
+
+                    binary="true"
+                    #number03NgModel="ngModel"
+                    [ngModel]="model.number03==1"
+                    (ngModelChange)="model.number03=$event?1:0"></p-checkbox>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="KWE">KWE</label></div>
+      <div>
+        <p-checkbox id="KWE" name="KWE"
+
+                    binary="true"
+                    #number04NgModel="ngModel"
+                    [ngModel]="model.number04==1"
+                    (ngModelChange)="model.number04=$event?1:0"></p-checkbox>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="FactoryName">工厂名称</label></div>
+      <div>
+        <input type="text" id="FactoryName" name="FactoryName"
+               #string02NgModel="ngModel"
+               [(ngModel)]="model.string02"
+               required pInputText>
+        <div *ngIf="string02NgModel.invalid && (string02NgModel.dirty || string02NgModel.touched)">
+          <p-message severity="error"
+                     text="该字段是必填项"
+                     *ngIf="string02NgModel.errors['required']"></p-message>
+        </div>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="Process">Process</label></div>
+      <div>
+        <input type="text" id="Process" name="Process"
+               #string03NgModel="ngModel"
+               [(ngModel)]="model.string03"
+               pInputText>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="UQOrderNo">UQ Order No</label></div>
+      <div>
+        <input type="text" id="UQOrderNo" name="UQOrderNo"
+               #string04NgModel="ngModel"
+               [(ngModel)]="model.string04"
+               pInputText>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="SampleNo">Sample No</label></div>
+      <div>
+        <input type="text" id="SampleNo" name="SampleNo"
+               #string05NgModel="ngModel"
+               [(ngModel)]="model.string05"
+               pInputText>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="WHDate">WH Date</label></div>
+      <div>
+        <input type="text" id="WHDate" name="WHDate"
+               #string06NgModel="ngModel"
+               [(ngModel)]="model.string06"
+               pInputText>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="QuantitySet">Quantity(SET)</label></div>
+      <div>
+        <input type="text" id="QuantitySet" name="QuantitySet"
+               #string07NgModel="ngModel"
+               [(ngModel)]="model.string07"
+               pInputText>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="PlanNumber">Plan Number</label></div>
+      <div>
+        <input type="text" id="PlanNumber" name="PlanNumber"
+               #string08NgModel="ngModel"
+               [(ngModel)]="model.string08"
+               pInputText>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="OrderDocumentStatus">Order Document Status</label></div>
+      <div>
+        <input type="text" id="OrderDocumentStatus" name="OrderDocumentStatus"
+               #string09NgModel="ngModel"
+               [(ngModel)]="model.string09"
+               pInputText>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="ShortLT">Short LT</label></div>
+      <div>
+        <input type="text" id="ShortLT" name="ShortLT"
+               #string10NgModel="ngModel"
+               [(ngModel)]="model.string10"
+               pInputText>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="DuplicateOrderError">Duplicate Order Error</label></div>
+      <div>
+        <input type="text" id="DuplicateOrderError" name="DuplicateOrderError"
+               #string11NgModel="ngModel"
+               [(ngModel)]="model.string11"
+               pInputText>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="LastUpdate">Last Update</label></div>
+      <div>
+        <input type="text" id="LastUpdate" name="LastUpdate"
+               #string12NgModel="ngModel"
+               [(ngModel)]="model.string12"
+               pInputText>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="Comment">Comment</label></div>
+      <div>
+        <input type="text" id="Comment" name="Comment"
+               #string13NgModel="ngModel"
+               [(ngModel)]="model.string13"
+               pInputText>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="ClothNo">布号</label></div>
+      <div>
+        <input type="text" id="ClothNo" name="ClothNo"
+               #string14NgModel="ngModel"
+               [(ngModel)]="model.string14"
+               pInputText>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="FactoryReferenceNo">Factory Reference No</label></div>
+      <div>
+        <input type="text" id="FactoryReferenceNo" name="FactoryReferenceNo"
+               #string15NgModel="ngModel"
+               [(ngModel)]="model.string15"
+               pInputText>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="MRDate">MR Date</label></div>
+      <div>
+        <input type="text" id="MRDate" name="MRDate"
+               #string16NgModel="ngModel"
+               [(ngModel)]="model.string16"
+               pInputText>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="Remarks1">Remarks1</label></div>
+      <div>
+        <input type="text" id="Remarks1" name="Remarks1"
+               #string17NgModel="ngModel"
+               [(ngModel)]="model.string17"
+               pInputText>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="Date1">Date1</label></div>
+      <div>
+        <input type="text" id="Date1" name="Date1"
+               #string18NgModel="ngModel"
+               [(ngModel)]="model.string18"
+               pInputText>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="Remarks2">Remarks2</label></div>
+      <div>
+        <input type="text" id="Remarks2" name="Remarks2"
+               #string19NgModel="ngModel"
+               [(ngModel)]="model.string19"
+               pInputText>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="Date2">Date2</label></div>
+      <div>
+        <input type="text" id="Date2" name="Date2"
+               #string20NgModel="ngModel"
+               [(ngModel)]="model.string20"
+               pInputText>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="Remarks3">Remarks3</label></div>
+      <div>
+        <input type="text" id="Remarks3" name="Remarks3"
+               #string21NgModel="ngModel"
+               [(ngModel)]="model.string21"
+               pInputText>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="Date3">Date3</label></div>
+      <div>
+        <input type="text" id="Date3" name="Date3"
+               #string22NgModel="ngModel"
+               [(ngModel)]="model.string22"
+               pInputText>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="GroupingNo">Grouping No.</label></div>
+      <div>
+        <input type="text" id="GroupingNo" name="GroupingNo"
+               #string23NgModel="ngModel"
+               [(ngModel)]="model.string23"
+               pInputText>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="ContractedETD">Contracted ETD</label></div>
+      <div>
+        <input type="text" id="ContractedETD" name="ContractedETD"
+               #string24NgModel="ngModel"
+               [(ngModel)]="model.string24"
+               pInputText>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="ShipTo">目的地港</label></div>
+      <div>
+        <input type="text" id="ShipTo" name="ShipTo"
+               #string25NgModel="ngModel"
+               [(ngModel)]="model.string25"
+               pInputText>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="SellingPrice">Selling Price</label></div>
+      <div>
+        <input type="text" id="SellingPrice" name="SellingPrice"
+               #string26NgModel="ngModel"
+               [(ngModel)]="model.string26"
+               pInputText>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="FactoryShort">Factory Short</label></div>
+      <div>
+        <input type="text" id="FactoryShort" name="FactoryShort"
+               #string27NgModel="ngModel"
+               [(ngModel)]="model.string27"
+               pInputText>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="InnerOrOuter">Inner/outer</label></div>
+      <div>
+        <input type="text" id="InnerOrOuter" name="InnerOrOuter"
+               #string28NgModel="ngModel"
+               [(ngModel)]="model.string28"
+               pInputText>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="VendorOrderType">Vendor Order Type</label></div>
+      <div>
+        <input type="text" id="VendorOrderType" name="VendorOrderType"
+               #string29NgModel="ngModel"
+               [(ngModel)]="model.string29"
+               pInputText>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="Item">Item</label></div>
+      <div>
+        <input type="text" id="Item" name="Item"
+               #string30NgModel="ngModel"
+               [(ngModel)]="model.string30"
+               pInputText>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="KeyNo">Key No</label></div>
+      <div>
+        <input type="text" id="KeyNo" name="KeyNo"
+               #string31NgModel="ngModel"
+               [(ngModel)]="model.string31"
+               pInputText>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="Remarks">Remarks</label></div>
+      <div>
+                            <textarea id="Remarks" name="Remarks"
+                                      #string32NgModel="ngModel"
+                                      [(ngModel)]="model.string32"
+
+                                      width="100%"
+                                      [rows]="string32.parameterValue.rows"
+                                      [cols]="string32.parameterValue.cols"
+                                      pInputTextarea></textarea>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="ShippingData">shipping Data</label></div>
+      <div>
+        <input type="text" id="ShippingData" name="ShippingData"
+               #string33NgModel="ngModel"
+               [(ngModel)]="model.string33"
+               pInputText>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="PreProjectNo">前工程号</label></div>
+      <div>
+        <input type="text" id="PreProjectNo" name="PreProjectNo"
+               #string34NgModel="ngModel"
+               [(ngModel)]="model.string34"
+               pInputText>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="G1User">G1 User</label></div>
+      <div>
+        <input type="text" id="G1User" name="G1User"
+               #string35NgModel="ngModel"
+               [(ngModel)]="model.string35"
+               pInputText>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="G1Password">G1 Password</label></div>
+      <div>
+        <input type="text" id="G1Password" name="G1Password"
+               #string36NgModel="ngModel"
+               [(ngModel)]="model.string36"
+               pInputText>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="G1PdfPassword">G1 PDF Password</label></div>
+      <div>
+        <input type="text" id="G1PdfPassword" name="G1PdfPassword"
+               #string37NgModel="ngModel"
+               [(ngModel)]="model.string37"
+               pInputText>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="CountryShort">Country Short</label></div>
+      <div>
+        <input type="text" id="CountryShort" name="CountryShort"
+               #string38NgModel="ngModel"
+               [(ngModel)]="model.string38"
+               pInputText>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="DeductingADV">扣减ADV</label></div>
+      <div>
+        <input type="text" id="DeductingADV" name="DeductingADV"
+               #string39NgModel="ngModel"
+               [(ngModel)]="model.string39"
+               pInputText>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="Message">Message</label></div>
+      <div>
+        <input type="text" id="Message" name="Message"
+               #string40NgModel="ngModel"
+               [(ngModel)]="model.string40"
+               pInputText>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="THKFactoryName">THK工厂</label></div>
+      <div>
+        <input type="text" id="THKFactoryName" name="THKFactoryName"
+               #string41NgModel="ngModel"
+               [(ngModel)]="model.string41"
+               pInputText>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="TimeCostType">时间类型</label></div>
+      <div>
+        <p-dropdown id="TimeCostType" name="TimeCostType"
+                    #string42NgModel="ngModel"
+                    [(ngModel)]="model.string42"
+
+                    placeholder="Select..."
+                    [autoWidth]="false"
+                    [options]="string42.parameterValue.options"></p-dropdown>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="TimeCost">耗费时间(H)</label></div>
+      <div>
+        <input type="text" id="TimeCost" name="TimeCost"
+               #string43NgModel="ngModel"
+               [(ngModel)]="model.string43"
+               pInputText>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="MRList">MR List</label></div>
+      <div>
+        <input type="text" id="MRList" name="MRList"
+               #string44NgModel="ngModel"
+               [(ngModel)]="model.string44"
+               pInputText>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="PreProjectNoJson">前工程 No _Json</label></div>
+      <div>
+        <input type="text" id="PreProjectNoJson" name="PreProjectNoJson"
+               #string45NgModel="ngModel"
+               [(ngModel)]="model.string45"
+               pInputText>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="BuyingPrice1">BuyingPrice 1</label></div>
+      <div>
+        <p-checkbox id="BuyingPrice1" name="BuyingPrice1"
+
+                    binary="true"
+                    #number05NgModel="ngModel"
+                    [ngModel]="model.number05==1"
+                    (ngModelChange)="model.number05=$event?1:0"></p-checkbox>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="NotMatchNumber">不比对数量</label></div>
+      <div>
+        <p-checkbox id="NotMatchNumber" name="NotMatchNumber"
+
+                    binary="true"
+                    #number06NgModel="ngModel"
+                    [ngModel]="model.number06==1"
+                    (ngModelChange)="model.number06=$event?1:0"></p-checkbox>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="NotMatchColor">不比对Pcs/Color</label></div>
+      <div>
+        <p-checkbox id="NotMatchColor" name="NotMatchColor"
+
+                    binary="true"
+                    #number07NgModel="ngModel"
+                    [ngModel]="model.number07==1"
+                    (ngModelChange)="model.number07=$event?1:0"></p-checkbox>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="isCBD">Is CBD</label></div>
+      <div>
+        <p-dropdown id="isCBD" name="isCBD"
+                    #string46NgModel="ngModel"
+                    [(ngModel)]="model.string46"
+                    required
+                    placeholder="Select..."
+                    [autoWidth]="false"
+                    [options]="string46.parameterValue.options"></p-dropdown>
+        <div *ngIf="string46NgModel.invalid && (string46NgModel.dirty || string46NgModel.touched)">
+          <p-message severity="error"
+                     text="该字段是必填项"
+                     *ngIf="string46NgModel.errors['required']"></p-message>
+        </div>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="isYG">isYC</label></div>
+      <div>
+        <p-dropdown id="isYG" name="isYG"
+                    #string47NgModel="ngModel"
+                    [(ngModel)]="model.string47"
+                    required
+                    placeholder="Select..."
+                    [autoWidth]="false"
+                    [options]="string47.parameterValue.options"></p-dropdown>
+        <div *ngIf="string47NgModel.invalid && (string47NgModel.dirty || string47NgModel.touched)">
+          <p-message severity="error"
+                     text="该字段是必填项"
+                     *ngIf="string47NgModel.errors['required']"></p-message>
+        </div>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="isG3">isG3</label></div>
+      <div>
+        <p-dropdown id="isG3" name="isG3"
+                    #string48NgModel="ngModel"
+                    [(ngModel)]="model.string48"
+                    required
+                    placeholder="Select..."
+                    [autoWidth]="false"
+                    [options]="string48.parameterValue.options"></p-dropdown>
+        <div *ngIf="string48NgModel.invalid && (string48NgModel.dirty || string48NgModel.touched)">
+          <p-message severity="error"
+                     text="该字段是必填项"
+                     *ngIf="string48NgModel.errors['required']"></p-message>
+        </div>
+      </div>
+    </div>
+    <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+      <div><label for="countDown">倒计时</label></div>
+      <div>
+        <app-count-down id="countDown" name="countDown"
+
+                        [countDownToStr]="model.string50"></app-count-down>
+      </div>
+    </div>
+  </div>
+</p-panel>
+
+

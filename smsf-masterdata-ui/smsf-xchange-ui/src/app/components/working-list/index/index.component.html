@@ -1,0 +1,139 @@
+<div class="ui-g">
+  <div class="ui-g-12">
+    <smsf-toolbar [title]="cs.L('title')" [subTitle]="cs.L('working-list.index.appTitle')" iconClass="fa fa-clipboard-list" iconBackGroundColor="#F62D51">
+      <button pButton type="button" icon="fas fa-play-circle" [label]="cs.L('working-list.index.autoAssign')" (click)="next($event)" class="ui-button-success"></button>
+      <button pButton type="button" icon="fa fa-file-export" [label]="cs.L('working-list.index.exportApp')" (click)="exportXls($event)" class="ui-button-action"></button>
+      <button pButton type="button" icon="fa fa-pause-circle" [label]="cs.L('working-list.index.pauseApp')" (click)="bantchPause()" [disabled]="selectedNodes.length &lt;= 0 || btnDisabled" class="ui-button-action"></button>
+      <button pButton type="button" icon="fa fa-retweet" [label]="cs.L('working-list.index.transaferApp')" (click)="bantchTransafer()" [disabled]="selectedNodes.length &lt;= 0 || btnDisabled" class="ui-button-action"></button>
+      <button pButton type="button" icon="fa fa-reply-all" [label]="cs.L('working-list.index.reassignApp')" (click)="openSelectPerson()" [disabled]="selectedNodes.length &lt;= 0 || btnDisabled" class="ui-button-action"></button>
+      <button pButton type="button" icon="fa fa-stop-circle" [label]="cs.L('working-list.index.terminateApp')" (click)="bantchTerminate()" [disabled]="selectedNodes.length &lt;= 0 || btnDisabled" class="ui-button-danger"></button>
+      <button pButton type="button" (click)="filter()" icon="fas fa-sync" class="ui-button-action"></button>
+      <button pButton type="button" (click)="open()" icon="fas fa-filter" class="ui-button-action"></button>
+    </smsf-toolbar>
+  </div>
+</div>
+    <!-- <p-panel [header]="cs.L('working-list.search.basicInfoTitle')">
+        <div class="ui-g">
+          <div class="ui-g-3">
+            <div><label for="searchType">{{cs.L('working-list.search.searchType')}}</label></div>
+            <div class="ui-inputgroup">
+              <p-dropdown [(ngModel)]="s_searchAuthType" [options]="searchAuthTypeOptions"  (onChange)="changeSearchAuthTypeOptions($event)"></p-dropdown>
+            </div>
+          </div>
+        </div>
+    </p-panel> -->
+<div class="ui-g">
+  <div class="ui-g-12 padding-t-0">
+    <!-- 选择行 selectionMode="multiple" -->
+    <p-table #table [value]="tableData" [lazy]="true" (onLazyLoad)="loadPage($event)" [paginator]="true"
+       dataKey="id" [rowHover]="true" [first]="first" [rows]="pageSize" [totalRecords]="totalRecords" [scrollable]="true" [style]="{width:'100%'}"
+       [(selection)]="selectedNodes" dataKey="id" (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnselect($event)">
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th width="40px">
+            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+          </th>
+          <th width="60px" class="text-center">{{cs.L('number')}}</th>
+          <th width="60px" class="text-center">{{cs.L('operation')}}</th>
+          <th width="160px" pSortableColumn="reference_no">{{cs.L('working-list.no')}}
+              <p-sortIcon field="reference_no" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+          </th>
+          <th width="180px" pSortableColumn="client_service_level_id">{{cs.L('working-list.client-service-level')}}
+            <p-sortIcon field="client_service_level_id" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+        </th>
+          <th width="100px" pSortableColumn="business_status">{{cs.L('working-list.business-status')}}
+              <p-sortIcon field="business_status" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+          </th>
+          <th width="100px">{{cs.L('working-list.data-status')}}</th>
+          <th width="100px" pSortableColumn="process_id">{{cs.L('working-list.process')}}
+              <p-sortIcon field="process_id" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+          </th>
+          <th width="100px" pSortableColumn="step_name">{{cs.L('working-list.stepName')}}
+              <p-sortIcon field="step_name" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+          </th>
+          <th width="160px" pSortableColumn="deadline">{{cs.L('working-list.deadline')}}
+              <p-sortIcon field="deadline" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+          </th>
+          <th width="160px"pSortableColumn="deadline">{{cs.L('working-list.sla')}}
+            <p-sortIcon field="deadline" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+          </th>
+          <th width="160px" pSortableColumn="create_time">{{cs.L('working-list.receive-time')}}
+              <p-sortIcon field="create_time" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+          </th>
+          <th width="160px" pSortableColumn="complete_time">{{cs.L('working-list.complete-time')}}
+              <p-sortIcon field="complete_time" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+          </th>
+          <th width="100px">{{cs.L('working-list.operator-name')}}</th>
+          <th width="100px"  pSortableColumn="priority">{{cs.L('working-list.priority')}}
+              <p-sortIcon field="priority" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+          </th>
+          <th width="120px" pSortableColumn="stepType">{{cs.L('working-list.stepType')}}
+              <p-sortIcon field="stepType" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData let-i="rowIndex" let-columns="columns" >
+        <tr  [pSelectableRow]="rowData" >  <!--(click)="editBusinessCase($event, rowData.referenceNo)"-->
+          <td width="40px">
+            <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+          </td>
+          <td width="60px" class="text-center">
+            {{i}}
+          </td>
+          <td width="60px" class="text-center operation">
+            <a [title]="cs.L('edit')" href="javascript:void(0);" (click)="editBusinessCase($event, rowData.id)">
+              <i class="fas fa-pencil-alt"></i>
+            </a>
+            <!-- <a *ngIf="rowData.hasAuth" href="#" (click)="locked($event, rowData)">
+              accept
+            </a> -->
+          </td>
+          <td width="160px" [title]="rowData.referenceNo"  > {{rowData.referenceNo}} </td>
+          <td width="180px" [title]="rowData.clientServiceLevelName"> {{rowData.clientServiceLevelName}} </td>
+          <td width="100px" [title]="rowData.businessStatus">
+            {{rowData.businessStatusName}}
+          </td>
+          <td width="100px" class="text-center" [title]="rowData.dataStatus">
+              <!-- {{rowData.dataStatus}} -->
+              <i *ngFor="let item of showIcon(rowData.dataStatus); let i = index" class="{{item}}">
+                  &nbsp;
+               </i>
+          </td>
+          <td width="100px" [title]="rowData.processId">
+            {{rowData.processId}}
+          </td>
+          <td width="100px" [title]="rowData.stepName">
+            {{rowData.stepName}}
+          </td>
+          <td width="160px">
+            {{rowData.deadline|date:'yyyy-MM-dd HH:mm:ss'}}
+          </td>
+          <td width="160px">
+            {{rowData.slaHour}}<ng-template [ngIf]="rowData.slaHour">{{cs.L('working-list.sla-hour')}}</ng-template>
+            {{rowData.slaMinute}}<ng-template [ngIf]="rowData.slaMinute">{{cs.L('working-list.sla-minute')}}</ng-template>
+          </td>
+          <td width="160px">
+            {{rowData.createTime|date:'yyyy-MM-dd HH:mm:ss'}}
+          </td>
+          <td width="160px">
+            {{rowData.completeTime|date:'yyyy-MM-dd HH:mm:ss'}}
+          </td>
+          <td width="100px" [title]="rowData.operatorName">
+            {{rowData.operatorName}}
+          </td>
+          <td width="100px" [title]="rowData.priorityName">
+            {{rowData.priorityName}}
+          </td>
+          <td width="120px" [title]="rowData.stepType">
+            {{rowData.stepType === '1'?'自动':'手动'}}
+          </td>
+
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+
+<app-search #editSidebar (closed)="search($event)"></app-search>
+<app-select-person #selectPersonSidebar (persons)="bantchReassign($event)"></app-select-person>
+

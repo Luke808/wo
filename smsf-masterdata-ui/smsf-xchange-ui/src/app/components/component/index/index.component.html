@@ -1,0 +1,60 @@
+<div class="ui-g">
+  <div class="ui-g-12 ui-g-padding-15">
+    <smsf-toolbar [title]="cs.L('title')" [subTitle]="[cs.L('component.index.appTitle')]"
+                  [total]="totalRecords" iconClass="fa fa-cubes" iconBackGroundColor="#2963FF">
+      <button pButton type="button" (click)="createComponent()" icon="fas fa-plus" [label]="cs.L('component.index.addApp')" class="ui-button-success"></button>
+      <button pButton type="button" (click)="deleteMultipleComponent($event)" icon="fas fa-trash-alt" [label]="cs.L('component.index.deleteApp')" class="ui-button-danger"></button>
+      <button pButton type="button" icon="fas fa-filter" class="ui-button-action"></button>
+    </smsf-toolbar>
+  </div>
+</div>
+<div class="ui-g">
+  <div class="ui-g-12 padding-t-0">
+    <p-table #table [columns]="tableCols" [value]="tableData" [lazy]="true" (onLazyLoad)="loadPage($event)" [paginator]="true"
+                             dataKey="id" [rowHover]="true" [first]="first" [rows]="pageSize" [totalRecords]="totalRecords" [(selection)]="tableSelectedRows" [scrollable]="true" [style]="{width:'100%'}">
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th style="width:40px" class="text-center">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th>
+        <th style="width:40px" class="text-center">{{cs.L('component.no')}}</th>
+        <th style="width:100px" class="text-center">{{cs.L('operation')}}</th>
+        <th style="width:200px">{{cs.L('component.name')}}</th>
+        <th style="width:200px">{{cs.L('component.parameters')}}</th>
+        <th>{{cs.L('component.description')}}</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns" let-rowIndex="rowIndex">
+      <tr [pSelectableRow]="rowData">
+        <td style="width:40px" class="text-center">
+          <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+        </td>
+        <td style="width:40px" class="text-center">
+          {{rowIndex}}
+        </td>
+        <td style="width:100px" class="operation text-center">
+          <a [title]="cs.L('edit')" href="#" (click)="editComponent($event, rowData.id)">
+            <i class="fas fa-pencil-alt"></i>
+          </a>
+          <a [title]="cs.L('delete')" class="action-delete" href="#" (click)="deleteComponent($event, rowData)">
+            <i class="fas fa-trash-alt"></i>
+          </a>
+        </td>
+        <td style="width:200px">
+          {{rowData.name}}
+        </td>
+        <td style="width:200px">
+          {{rowData.parameters}}
+        </td>
+        <td>
+          {{rowData.description}}
+        </td>
+      </tr>
+    </ng-template>
+    </p-table>
+  </div>
+</div>
+<app-component-edit #editSidebar (reload)="reload()"></app-component-edit>
+
+
+

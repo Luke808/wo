@@ -1,0 +1,29 @@
+<smsf-sidebar [title]="id?cs.L('formatValidationRule.edit.editTitle'):cs.L('formatValidationRule.add.addTitle')" position="right"
+styleClass="ui-sidebar-md" [baseZIndex]="10000" [(visible)]="sidebarVisible">
+<div class="ui-fluid">
+  <div class="ui-sidebar-label">{{cs.L('formatValidationRule.id')}}</div>
+  <div class="ui-sidebar-control">
+    <input class="form-control" type="text" maxlength="50" pInputText value={{data.id}} readonly/>
+  </div>
+  <div class="ui-sidebar-label">{{cs.L('formatValidationRule.name')}}</div>
+  <div class="ui-sidebar-control">
+    <input class="form-control" type="text" maxlength="45" pInputText [(ngModel)]="data.name"/>
+  </div>
+  <div class="ui-sidebar-label">{{cs.L('formatValidationRule.validateType')}}</div>
+  <div class="ui-sidebar-control">
+    <p-dropdown [options]="validateTypes" [style]="{'width':'100%'}" [(ngModel)]="data.validateType"></p-dropdown>
+  </div>
+  <div class="ui-sidebar-label">{{cs.L('formatValidationRule.validateExpression')}}</div>
+  <div class="ui-sidebar-control">
+    <input class="form-control" type="text" maxlength="255" pInputText [(ngModel)]="data.validateExpression"/>
+  </div>
+  <div class="ui-sidebar-label">{{cs.L('formatValidationRule.messages')}}</div>
+  <div class="ui-sidebar-control">
+    <textarea class="form-control" rows="5" cols="30" maxlength="255" pInputTextarea autoResize="autoResize" [(ngModel)]="data.message"></textarea>
+  </div>
+</div>
+  <div class="ui-sidebar-buttons">
+    <button pButton type="button" (click)="close()" [label]="cs.L('cancel')" class="ui-button-secondary"></button>
+    <button pButton type="button" (click)="save()" [label]="cs.L('save')" class="ui-button-info"></button>
+  </div>
+</smsf-sidebar>

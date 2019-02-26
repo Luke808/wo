@@ -1,0 +1,43 @@
+<div class="p-grid ui-fluid" *ngIf="model">
+  <div [class.p-col-6]="!isFullScreen" [class.p-col-3]="isFullScreen">
+    <div class="form-group">
+      <label class="form-label" for="businessStatus">{{cs.L('working-portal.common-information.data.businessStatus')}}</label>
+      <input type="text" id="businessStatus" name="businessStatus" readonly
+             [ngModel]="model.businessCase.businessStatusName" class="form-control"
+             pInputText>
+    </div>
+  </div>
+  <div [class.p-col-6]="!isFullScreen" [class.p-col-3]="isFullScreen">
+    <div class="form-group">
+      <label class="form-label" for="comments">{{cs.L('working-portal.common-information.data.comments')}}</label>
+      <input type="text" id="comments" name="comments" readonly
+             [ngModel]="model.businessCase.comments" class="form-control"
+             pInputText>
+    </div>
+  </div>
+  <div [class.p-col-6]="!isFullScreen" [class.p-col-3]="isFullScreen">
+    <div class="form-group">
+      <label class="form-label" for="deadline">{{cs.L('working-portal.common-information.data.deadline')}}</label>
+      <input type="text" id="deadline" name="deadline" readonly
+             [ngModel]="model.businessCase.deadline|date:'medium'" class="form-control"
+             pInputText>
+    </div>
+  </div>
+  <div [class.p-col-6]="!isFullScreen" [class.p-col-3]="isFullScreen">
+    <div></div>
+    <div class="form-group">
+      <label class="form-label" for="referenceNo">{{cs.L('working-portal.common-information.data.referenceNo')}}</label>
+      <input type="text" id="referenceNo" name="referenceNo" readonly
+             [ngModel]="model.businessCase.referenceNo" class="form-control"
+             pInputText>
+    </div>
+  </div>
+  <div [class.p-col-6]="!isFullScreen" [class.p-col-3]="isFullScreen">
+    <div class="form-group">
+      <label class="form-label" for="stepId">{{cs.L('working-portal.common-information.data.stepId')}}</label>
+      <input type="text" id="stepId" name="stepId" readonly
+             [ngModel]="model.businessCase.stepId" class="form-control"
+             pInputText>
+    </div>
+  </div>
+</div>

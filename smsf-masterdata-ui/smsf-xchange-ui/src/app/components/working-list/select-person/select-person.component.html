@@ -1,0 +1,74 @@
+<smsf-sidebar [title]="cs.L('working-list.selectPerson.title')" position="right"
+styleClass="ui-sidebar-md"  [(visible)]="sidebarVisible">
+
+<div class="p-grid">
+  <div class="p-col">
+      <div class="box">
+        <div class="ui-sidebar-label">{{cs.L('working-list.selectPerson.eid')}}</div>
+      </div>
+  </div>
+  <div class="p-col">
+      <div class="box">
+        <div class="ui-sidebar-label">{{cs.L('working-list.selectPerson.name')}}</div>
+      </div>
+  </div>
+  <div class="p-col">
+      <div class="box"></div>
+  </div>
+</div>
+<div class="p-grid">
+  <div class="p-col">
+      <div class="box">
+        <div class="ui-sidebar-control">
+          <input type="text" pInputText [(ngModel)]="eid"  />
+        </div>
+      </div>
+  </div>
+  <div class="p-col">
+      <div class="box">
+        <div class="ui-sidebar-control">
+          <input type="text" pInputText [(ngModel)]="name"  />
+        </div>
+      </div>
+  </div>
+  <div class="p-col">
+      <div class="box">
+        <button pButton type="button" (click)="filter()" icon="fas fa-sync" class="ui-button-action"></button>
+      </div>
+  </div>
+</div>
+
+<div class="ui-g">
+  <div class="ui-g-12 padding-t-0">
+    <!-- 选择行 selectionMode="multiple" -->
+    <p-table #table [value]="tableData" [lazy]="true" (onLazyLoad)="loadPage($event)" [paginator]="true"
+       dataKey="id" [rowHover]="true" [first]="first" [rows]="pageSize" [totalRecords]="totalRecords"
+       [(selection)]="selectedNodes">
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th style="width: 3em">
+          </th>
+          <th style="width: 4em">{{cs.L('working-list.selectPerson.eid')}}</th>
+          <th style="width: 10em" >{{cs.L('working-list.selectPerson.name')}}</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData let-columns="columns" >
+        <tr  [pSelectableRow]="rowData" >  <!--(click)="editBusinessCase($event, rowData.referenceNo)"-->
+          <td>
+            <p-tableRadioButton [value]="rowData"></p-tableRadioButton>
+          </td>
+          <td>
+            {{rowData.eid}}
+          </td>
+          <td [title]="rowData.referenceNo"> {{rowData.name}} </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+
+  <div class="ui-sidebar-buttons">
+    <button pButton type="button" (click)="close()" [label]="cs.L('close')" class="ui-button-secondary"></button>
+    <button pButton type="button" (click)="bantchReassign()" [label]="cs.L('working-list.bantchReassignBtn')" class="ui-button-info"></button>
+  </div>
+</smsf-sidebar>

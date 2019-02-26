@@ -1,0 +1,23 @@
+<smsf-sidebar [title]="id?cs.L('component.edit.editTitle'):cs.L('component.add.addTitle')" position="right"
+styleClass="ui-sidebar-md" [baseZIndex]="10000" [(visible)]="sidebarVisible">
+  <div class="ui-sidebar-label">{{cs.L('component.id')}}</div>
+  <div class="ui-sidebar-control">
+    <input class="form-control" type="text" maxlength="50" pInputText value={{data.id}} readonly/>
+  </div>
+  <div class="ui-sidebar-label">{{cs.L('component.name')}}</div>
+  <div class="ui-sidebar-control">
+    <input class="form-control" type="text" maxlength="45" pInputText [(ngModel)]="data.name" #name="ngModel"/>
+  </div>
+  <div class="ui-sidebar-label">{{cs.L('component.parameters')}}</div>
+  <div class="ui-sidebar-control">
+    <input class="form-control" type="text" maxlength="100" pInputText [(ngModel)]="data.parameters"/>
+  </div>
+  <div class="ui-sidebar-label">{{cs.L('component.description')}}</div>
+  <div class="ui-sidebar-control">
+    <textarea class="form-control" rows="5" cols="30" maxlength="255" pInputTextarea autoResize="autoResize" [(ngModel)]="data.description"></textarea>
+  </div>
+  <div class="ui-sidebar-buttons">
+    <button pButton type="button" (click)="close()" [label]="cs.L('cancel')" class="ui-button-secondary"></button>
+    <button pButton type="button" (click)="save()" [label]="cs.L('save')" class="ui-button-info"></button>
+  </div>
+</smsf-sidebar>

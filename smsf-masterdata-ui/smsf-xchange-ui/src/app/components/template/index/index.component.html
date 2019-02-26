@@ -1,0 +1,70 @@
+<div class="ui-g">
+  <div class="ui-g-12">
+    <smsf-toolbar [title]="cs.L('title')" [subTitle]="[cs.L('template.title')]"
+                  [total]="totalElements" iconClass="fa fa-gem"
+                  iconBackGroundColor="#7460EF">
+      <button pButton type="button" (click)="create()" icon="fas fa-plus" [label]="cs.L('add')"
+      class="ui-button-success"></button>
+      <button pButton type="button" icon="fas fa-trash-alt" [label]="cs.L('batchDelete')" class="ui-button-danger"
+              (click)="deleteAll(selectedContent)"></button>
+      <button pButton type="button" (click)="reload()" icon="fas fa-sync" class="ui-button-action"></button>
+    </smsf-toolbar>
+  </div>
+</div>
+<div class="ui-g">
+  <div class="ui-g-12 padding-t-0">
+    <p-table #pTable [value]="content" [loading]="loading"
+             [paginator]="true" [rows]="size" [totalRecords]="totalElements"
+             [rowsPerPageOptions]="[10,20,30]" [pageLinks]="3" [rowHover]="true"
+             [lazy]="true" (onLazyLoad)="lazyLoad($event)" dataKey="id" [(selection)]="selectedContent" [scrollable]="true" [style]="{width:'100%'}">
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th style="width: 40px" class="text-center">
+            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+          </th>
+          <th style="width: 60px" class="text-center">{{cs.L('number')}}
+          </th>
+          <th style="width: 100px" class="text-center">{{cs.L('operation')}}</th>
+          <th style="width: 200px">{{cs.L('template.data.name')}}</th>
+          <th style="width: 150px">{{cs.L('template.data.businessObject')}}</th>
+          <th style="width: 300px">{{cs.L('template.data.componentName')}}</th>
+          <th style="width: 400px">{{cs.L('template.data.description')}}</th>
+          <th style="width: 100px">{{cs.L('template.data.enable')}}</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+        <tr [pSelectableRow]="rowData">
+          <td style="width: 40px" class="text-center">
+            <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+          </td>
+          <td style="width: 60px" class="text-center">
+            {{i+1}}
+          </td>
+          <td style="width: 100px" class="operation text-center">
+            <a [title]="cs.L('edit')" href="javascript:void(0);" (click)="modify(rowData)">
+              <i class="fas fa-pencil-alt"></i>
+            </a>
+            <a [title]="cs.L('delete')" class="action-delete" href="javascript:void(0);"
+               (click)="deleteOne(rowData)">
+              <i class="fas fa-trash-alt"></i>
+            </a>
+          </td>
+          <td style="width: 200px" [title]="rowData.name">{{rowData.name}}</td>
+          <td style="width: 150px">
+            <ng-container *ngIf="rowData.businessObject">{{rowData.businessObject.name}}</ng-container>
+          </td>
+          <td style="width: 300px">{{rowData.componentName}}</td>
+          <td style="width: 400px">{{rowData.description}}</td>
+          <td style="width: 100px"><p-inputSwitch [ngModel]="rowData.enable" disabled></p-inputSwitch></td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td [attr.colspan]="7">
+            {{cs.L('nonData')}}
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>

@@ -1,0 +1,250 @@
+<div class="ui-g">
+  <div class="ui-g-12">
+    <smsf-toolbar [title]="cs.L('title')" [subTitle]="[cs.L('template.title')]"
+                  iconClass="fa fa-gem"
+                  iconBackGroundColor="#7460EF">
+      <button pButton type="button" [label]="cs.L('return')" (click)="return()" class="ui-button-action"
+              icon="fas fa-arrow-left"></button>
+      <button pButton type="button" icon="fas fa-trash-alt" [label]="cs.L('delete')" class="ui-button-danger"
+              (click)="delete()"></button>
+      <button pButton type="button" icon="fas fa-save" [label]="cs.L('save')" (click)="save()"
+              class="ui-button-success" [disabled]="form.invalid"></button>
+      <button pButton type="button" icon="fas fa-sync" class="ui-button-action" (click)="flush()"></button>
+    </smsf-toolbar>
+  </div>
+</div>
+<div class="ui-g">
+  <div class="ui-g-12 ui-fluid padding-t-0">
+    <p-panel [header]="cs.L('template.index.basicInfoTitle')">
+      <form [formGroup]="form">
+        <div class="ui-g">
+          <div class="ui-g-12 ui-md-3">
+            <div class="form-group">
+              <label class="form-label" for="id">{{cs.L('data.id')}}</label>
+              <input class="form-control" name="id" id="id" pInputText type="text" formControlName="id" [readonly]="true">
+            </div>
+          </div>
+          <div class="ui-g-12 ui-md-3">
+            <div class="form-group">
+              <label class="form-label" for="layout">{{cs.L('template.data.layout')}}</label>
+              <p-dropdown class="form-control" id="layout" name="layout" [options]="layoutOptions" formControlName="layout"
+                          placeholder="Select Layout"
+                          [autoWidth]="false"></p-dropdown>
+              <p-message severity="error" *ngIf="isControlInvalid('layout')" [text]="errorMsg.layout"></p-message>
+            </div>
+          </div>
+          <div class="ui-g-12 ui-md-3">
+            <div class="form-group">
+              <label class="form-label" for="name">{{cs.L('template.data.name')}}</label>
+              <input class="form-control" name="name" id="name" pInputText type="text" formControlName="name">
+              <p-message severity="error" *ngIf="isControlInvalid('name')" [text]="errorMsg.name"></p-message>
+            </div>
+          </div>
+          <div class="ui-g-12 ui-md-3">
+            <div class="form-group">
+              <label class="form-label" for="businessObject">{{cs.L('template.data.businessObject')}}</label>
+              <p-autoComplete name="businessObject" id="businessObject" formControlName="businessObject"
+                              field="name" [suggestions]="businessObjectOptions" [forceSelection]="true"
+                              (completeMethod)="searchBusinessObject($event)" [emptyMessage]="cs.L('nonData')"
+                              [dropdown]="true" (onSelect)="onSelectBusinessObject($event)"></p-autoComplete>
+              <p-message severity="error" *ngIf="isControlInvalid('businessObject')"
+                         [text]="errorMsg.businessObject"></p-message>
+            </div>
+          </div>
+        </div>
+        <div class="ui-g">
+          <div class="ui-g-12 ui-md-3">
+            <div class="form-group">
+              <label class="form-label" for="componentName">{{cs.L('template.data.componentName')}}</label>
+              <input class="form-control" name="componentName" id="componentName" pInputText type="text"
+                     formControlName="componentName">
+              <p-message severity="error" *ngIf="isControlInvalid('componentName')"
+                         [text]="errorMsg.componentName"></p-message>
+            </div>
+          </div>
+          <div class="ui-g-12 ui-md-3">
+            <div class="form-group">
+              <label class="form-label" for="process">{{cs.L('template.data.process')}}</label>
+              <p-autoComplete class="form-control" name="process" id="process" formControlName="process"
+                              field="name" [suggestions]="processOptions" [forceSelection]="true"
+                              (completeMethod)="searchProcess($event)" [emptyMessage]="cs.L('nonData')"
+                              (onSelect)="onSelectProcess($event)" [dropdown]="true"></p-autoComplete>
+              <p-message severity="error" *ngIf="isControlInvalid('process')" [text]="errorMsg.process"></p-message>
+            </div>
+          </div>
+          <div class="ui-g-12 ui-md-6">
+            <div class="form-group">
+              <label class="form-label" for="steps">{{cs.L('template.data.steps')}}</label>
+              <p-autoComplete class="form-control" name="steps" id="steps" formControlName="steps"
+                              field="name" [suggestions]="stepOptions" [forceSelection]="true" [multiple]="true"
+                              (completeMethod)="searchSteps($event)" [emptyMessage]="cs.L('nonData')"
+                              [dropdown]="true"></p-autoComplete>
+              <p-message severity="error" *ngIf="isControlInvalid('steps')" [text]="errorMsg.steps"></p-message>
+            </div>
+          </div>
+          <div class="ui-g-12 ui-md-3">
+            <div class="form-group">
+              <label class="form-label" for="description">{{cs.L('template.data.description')}}</label>
+              <input class="form-control" name="description" id="description" pInputText type="text" formControlName="description">
+              <p-message severity="error" *ngIf="isControlInvalid('description')"
+                         [text]="errorMsg.description"></p-message>
+            </div>
+          </div>
+          <div class="ui-g-12 ui-md-3">
+            <div class="form-group">
+              <label class="form-label" for="enable">{{cs.L('template.data.enable')}}</label>
+              <p-inputSwitch class="form-control" name="enable" id="enable" formControlName="enable"></p-inputSwitch>
+            </div>
+          </div>
+        </div>
+      </form>
+    </p-panel>
+  </div>
+</div>
+<div class="ui-g">
+  <div class="ui-g-12 padding-t-0">
+    <p-panel header="属性信息">
+    <p-table #table [value]="tableContent" [rowHover]="true" [(selection)]="tableSelected"
+             [lazy]="true" [lazyLoadOnInit]="isStartLoadingData" (onLazyLoad)="lazyLoad($event)" [scrollable]="true" [style]="{width:'100%'}">
+      <ng-template pTemplate="header" let-columns>
+        <tr class="bt">
+          <th style="width: 50px" class="text-center">
+            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+          </th>
+          <th style="width: 50px">{{cs.L('number')}}</th>
+          <th class="text-center" style="width:100px">
+            {{cs.L('operation')}}
+            <a [title]="cs.L('add')" (click)="addRow()">
+              <i class="fas fa-plus"></i>
+            </a>
+          </th>
+          <th>{{cs.L('template.data.businessProperty')}}</th>
+          <th>{{cs.L('template.data.component')}}</th>
+          <th>{{cs.L('template.data.componentParam')}}</th>
+          <th>{{cs.L('template.data.index')}}</th>
+          <th>{{cs.L('template.data.directive')}}</th>
+          <th>{{cs.L('template.data.width')}}</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+        <tr [pSelectableRow]="rowData">
+          <td style="width: 50px" class="text-center">
+            <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+          </td>
+          <td style="width: 50px" class="text-center">{{i + 1}}</td>
+          <td style="width:100px" class="operation text-center">
+            <a [title]="cs.L('delete')" class="action-delete" (click)="deleteRow(rowData)">
+              <i class="fas fa-trash-alt"></i>
+            </a>
+          </td>
+          <td pEditableColumn>
+            <p-cellEditor>
+              <ng-template pTemplate="input">
+                <div class="ui-inputgroup">
+                  <p-autoComplete name="element-businessProperty" #ng="ngModel" appendTo="body"
+                                  [(ngModel)]="rowData.templateElement.businessProperty"
+                                  field="name" [suggestions]="businessPropertyOptions"
+                                  [forceSelection]="true" [emptyMessage]="cs.L('nonData')"
+                                  (completeMethod)="searchBusinessProperty($event)"
+                                  [dropdown]="true" (onSelect)="onSelectBusinessProperty($event)"
+                                  required></p-autoComplete>
+                  <span class="ui-inputgroup-addon" *ngIf="isControlInvalid(ng)"
+                        [pTooltip]="errorMsg[ng]"
+                        tooltipPosition="right" tooltipEvent="hover">!</span>
+                </div>
+              </ng-template>
+              <ng-template pTemplate="output">
+                {{rowData.templateElement.businessProperty ? rowData.templateElement.businessProperty.name : ''}}
+              </ng-template>
+            </p-cellEditor>
+          </td>
+          <td pEditableColumn>
+            <p-cellEditor>
+              <ng-template pTemplate="input">
+                <div class="ui-inputgroup">
+                  <p-autoComplete name="element-component" #ng="ngModel" appendTo="body"
+                                  [(ngModel)]="rowData.templateElement.component"
+                                  field="name" [suggestions]="componentOptions"
+                                  [forceSelection]="true" [emptyMessage]="cs.L('nonData')"
+                                  (completeMethod)="searchComponents($event)"
+                                  [dropdown]="true" (onSelect)="onSelectComponent($event)"
+                                  required></p-autoComplete>
+                  <span class="ui-inputgroup-addon" *ngIf="isControlInvalid(ng)"
+                        [pTooltip]="errorMsg[ng]"
+                        tooltipPosition="right" tooltipEvent="hover">!</span>
+                </div>
+              </ng-template>
+              <ng-template pTemplate="output">
+                {{rowData.templateElement.component ? rowData.templateElement.component.name : ''}}
+              </ng-template>
+            </p-cellEditor>
+          </td>
+          <td pEditableColumn>
+            <p-cellEditor>
+              <ng-template pTemplate="input">
+                <div class="ui-inputgroup">
+                  <textarea pInputTextarea name="element-component-param"
+                            [(ngModel)]="rowData.templateElement.componentParam" #ng="ngModel"></textarea>
+                  <span class="ui-inputgroup-addon" *ngIf="isControlInvalid(ng)"
+                        [pTooltip]="errorMsg[ng.name]"
+                        tooltipPosition="right" tooltipEvent="hover">!</span>
+                </div>
+              </ng-template>
+              <ng-template pTemplate="output">
+                {{rowData.templateElement.componentParam}}
+              </ng-template>
+            </p-cellEditor>
+          </td>
+          <td pEditableColumn>
+            <p-cellEditor>
+              <ng-template pTemplate="input">
+                <div class="ui-inputgroup">
+                  <p-spinner name="element-index" [(ngModel)]="rowData.templateElement.index"
+                             [min]="1" [max]="100" #ng="ngModel" required></p-spinner>
+                  <span class="ui-inputgroup-addon" *ngIf="isControlInvalid(ng)"
+                        [pTooltip]="errorMsg[ng.name]"
+                        tooltipPosition="right" tooltipEvent="hover">!</span>
+                </div>
+              </ng-template>
+              <ng-template pTemplate="output">
+                {{rowData.templateElement.index}}
+              </ng-template>
+            </p-cellEditor>
+          </td>
+          <td pEditableColumn>
+            <p-cellEditor>
+              <ng-template pTemplate="input">
+                <button pButton (click)="directive(rowData)"
+                        [label]="propertyName(rowData.elementDirectives)"></button>
+              </ng-template>
+              <ng-template pTemplate="output">{{propertyName(rowData.elementDirectives)}}</ng-template>
+            </p-cellEditor>
+          </td>
+          <td pEditableColumn>
+            <p-cellEditor>
+              <ng-template pTemplate="input">
+                <div class="ui-inputgroup">
+                  <p-dropdown name="element-width" #ng="ngModel" appendTo="body"
+                              [options]="widthOptions" [(ngModel)]="rowData.templateElement.width"></p-dropdown>
+                  <span class="ui-inputgroup-addon" *ngIf="isControlInvalid(ng)"
+                        [pTooltip]="errorMsg[ng.name]"
+                        tooltipPosition="right" tooltipEvent="hover">!</span>
+                </div>
+              </ng-template>
+              <ng-template pTemplate="output">
+                {{rowData.templateElement.width}}
+              </ng-template>
+            </p-cellEditor>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td [attr.colspan]="9">{{cs.L('nonData')}}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+    </p-panel>
+  </div>
+</div>
+<app-template-editor-directive (closed)="sidebarClosed($event)"></app-template-editor-directive>

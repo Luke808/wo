@@ -1,0 +1,205 @@
+<div class="ui-g">
+  <div class="ui-g-12">
+    <smsf-toolbar [title]="cs.L('title')"
+                  [subTitle]="[cs.L('businessObject.appTitle')]"
+                  [total]="totalRecords"
+                  iconClass="fa fa-briefcase" iconBackGroundColor="#20C997">
+      <button pButton type="button" [routerLink]="['/business-object']" [label]="cs.L('businessObject.edit.backBtn')" icon="fa fa-arrow-left" class="ui-button-action"></button>
+      <button pButton type="button" (click)="save()" [label]="cs.L('businessObject.edit.saveBtn')" class="ui-button-success" icon="fas fa-save"></button>
+      <button pButton type="button" icon="fas fa-filter" class="ui-button-action"></button>
+    </smsf-toolbar>
+  </div>
+</div>
+<div class="ui-g">
+  <div class="ui-g-12 ui-fluid padding-t-0">
+    <p-panel [header]="cs.L('businessObject.edit.basicInfoTitle')">
+      <div class="ui-g">
+        <div class="ui-g-3">
+          <div class="form-group">
+            <label class="form-label">{{cs.L('businessObject.edit.id')}}</label>
+            <input  class="form-control" type="text" pInputText [formControl]="id" readonly>
+          </div>
+        </div>
+        <div class="ui-g-3">
+          <div class="form-group">
+            <label class="form-label">{{cs.L('businessObject.edit.parentObject')}}<span style="color:red">*</span></label>
+            <!-- <input type="text" pInputText [(ngModel)]="formData.parentId" [readonly]="paramId !== ''" [ngStyle]="{'background':paramId === '' ? '' : '#E6E6E6','width':paramId === '' ? '100%' : '100%'}"> -->
+            <p-dropdown class="form-control" [options]="parentOptions" [formControl]="parentId" [readonly]="paramId !== ''" [style]="{width: '100%'}" filter="true">
+              <ng-template let-item pTemplate="selectedItem">
+                <span style="vertical-align:middle; margin-left: .5em">{{item.label}}</span>
+              </ng-template>
+              <ng-template let-parent pTemplate="item">
+                <div class="ui-helper-clearfix" style="position: relative;height: 25px;">
+                  <div style="font-size:14px;float:right;margin-top:4px">{{parent.label}}</div>
+                </div>
+              </ng-template>
+            </p-dropdown>
+            <!-- <div *ngIf="parentId.invalid && (parentId.dirty || parentId.touched)"
+                class="alert alert-danger">
+                <div *ngIf="parentId.errors.required" style="color:red">
+                    parentId is required.
+                </div>
+           </div> -->
+            <!-- <p>Selected parent: {{formData.parentId||'none'}}</p> -->
+          </div>
+        </div>
+        <div class="ui-g-3">
+          <div class="form-group">
+            <label class="form-label">{{cs.L('businessObject.edit.name')}}<span style="color:red">*</span></label>
+            <div class="ui-inputgroup">
+              <input type="text" pInputText style="width: 100%" [formControl]="name"
+                     [tooltipDisabled]="!name.invalid && (name.dirty || name.touched)"
+                     pTooltip="Enter name" tooltipPosition="right"
+                     tooltipEvent="hover">
+              <span class="ui-inputgroup-addon" *ngIf="name.invalid && (name.dirty || name.touched)">!</span>
+            </div>
+          </div>
+        </div>
+        <div class="ui-g-3">
+          <div class="form-group">
+            <label class="form-label">{{cs.L('businessObject.edit.businessDomain')}}<span style="color:red">*</span></label>
+            <div class="ui-inputgroup">
+              <input type="text" pInputText [formControl]="businessDomain" style="width: 100%"
+                     [tooltipDisabled]="!businessDomain.invalid && (businessDomain.dirty || businessDomain.touched)"
+                     pTooltip="Enter businessDomain" tooltipPosition="right"
+                     tooltipEvent="hover">
+              <span class="ui-inputgroup-addon" *ngIf="businessDomain.invalid && (businessDomain.dirty || businessDomain.touched)">!</span>
+            </div>
+          </div>
+        </div>
+        <div class="ui-g-3">
+          <div class="form-group">
+            <label class="form-label">{{cs.L('businessObject.edit.description')}}</label>
+            <input class="form-control" type="text" pInputText [formControl]="description">
+          </div>
+        </div>
+      </div>
+    </p-panel>
+  </div>
+</div>
+<div class="ui-g">
+  <div class="ui-g-12 ui-fluid">
+        <p-panel [header]="cs.L('businessObject.edit.table.title')">
+          <p-table #table [columns]="tableCols" [value]="tableData" [lazy]="true" (onLazyLoad)="loadPage($event)"
+          dataKey="id" [rowHover]="true" selectionMode="multiple" [(selection)]="tableSelectedRows" [scrollable]="true" [style]="{width:'100%'}">
+          <ng-template pTemplate="header" let-columns>
+              <tr class="bt">
+                <!-- <th style="width: 3.2em">
+                  <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th> -->
+                <th style="width: 50px" class="text-center">
+                  <!-- 序号 -->
+                  {{cs.L('businessObject.edit.table.no')}}
+                </th>
+                <th class="text-center" style="width:100px">
+                  {{cs.L('businessObject.edit.table.action')}}
+                  <a [title]="cs.L('add')" href="#" (click)="addRow($event)">
+                    <i class="fas fa-plus"></i>
+                  </a>
+                </th>
+                <th *ngFor="let col of columns" style="width:100px">
+                  {{col.header}}
+                  <!-- <p-sortIcon [field]="col.field"></p-sortIcon> -->
+                </th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-columns="columns" let-rowIndex="rowIndex">
+              <tr [pSelectableRow]="rowData">
+                <td style="width: 50px" class="text-center">
+                  <!-- <p-tableCheckbox [value]="rowData"></p-tableCheckbox> -->
+                  {{rowIndex+1}}
+                </td>
+                <td style="width:100px" class="operation text-center">
+                  <a [title]="cs.L('delete')" class="action-delete" href="#" (click)="delete($event, rowIndex, rowData)">
+                    <i class="fas fa-trash-alt"></i>
+                  </a>
+                </td>
+                <td style="width:100px" (click)="selectValidation(rowData)" title="{{rowData.validationRuleNames}}">
+                  {{rowData.validationRuleNames}}
+                </td>
+                <td style="width:100px" pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="rowData.name" required maxlength="45">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{rowData.name}}
+                    </ng-template>
+                  </p-cellEditor>
+                </td>
+                <td style="width:100px" pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <p-dropdown [options]="dataTypeOptions" [(ngModel)]="rowData.dataTypeLabel"
+                                    optionLabel="name" placeholder="Select Data Type"
+                                    (onChange)="changeDataTypeOptions($event, rowData)" [style]="{'width':'100%'}"
+                                    required maxlength="45" appendTo="body"></p-dropdown>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{rowData.dataType}}
+                    </ng-template>
+                  </p-cellEditor>
+                </td>
+                <td style="width:100px" pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="rowData.length" required maxlength="4">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{rowData.length}}
+                    </ng-template>
+                  </p-cellEditor>
+                </td>
+                <td style="width:100px" pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <p-dropdown [options]="dbFieldOptions" [(ngModel)]="rowData.mappingColumnLabel"
+                                    optionLabel="name" placeholder="Select DB Field" (onChange)="changeDbFieldOptions($event, rowData)" [style]="{'width':'100%'}" required maxlength="45" appendTo="body"></p-dropdown>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{rowData.mappingColumn}}
+                    </ng-template>
+                  </p-cellEditor>
+                </td>
+                <td style="width:100px" pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="rowData.label" required maxlength="90">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{rowData.label}}
+                    </ng-template>
+                  </p-cellEditor>
+                </td>
+                <td style="width:100px" pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="rowData.displayIndex" required maxlength="4">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{rowData.displayIndex}}
+                    </ng-template>
+                  </p-cellEditor>
+                </td>
+                <td style="width:100px" pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="rowData.description" required maxlength="45">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{rowData.description}}
+                    </ng-template>
+                  </p-cellEditor>
+                </td>
+              </tr>
+            </ng-template>
+            <!-- <ng-template pTemplate="summary" let-rowData>
+              <div style="text-align:left">
+                  <button type="button" pButton icon="fa fa-plus" (click)="addRow()" label="Add"></button>
+              </div>
+            </ng-template> -->
+          </p-table>
+        </p-panel>
+      </div>
+</div>
+    <app-validation-setting #editSidebar (reload)="reload()"></app-validation-setting>

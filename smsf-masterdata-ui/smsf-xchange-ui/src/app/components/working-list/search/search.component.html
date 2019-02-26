@@ -1,0 +1,83 @@
+<smsf-sidebar [title]="cs.L('working-list.search.title')" position="right"
+styleClass="ui-sidebar-md"  [(visible)]="sidebarVisible">
+  <div class="ui-sidebar-label">{{cs.L('working-list.search.searchType')}}</div>
+  <div class="ui-sidebar-control">
+      <p-dropdown [(ngModel)]="searchDto.searchAuthType" [options]="searchAuthTypeOptions" placeholder="Select Type" [showClear]="true" (onChange)="changeSearchAuthTypeOptions($event)"></p-dropdown>
+  </div>
+  <div class="ui-sidebar-label">{{cs.L('working-list.search.referenceNo')}}</div>
+  <div class="ui-sidebar-control">
+    <input type="text" pInputText [(ngModel)]="searchDto.referenceNo"  />
+  </div>
+  <div class="ui-sidebar-label">{{cs.L('working-list.search.deadLine')}}</div>
+  <div class="p-grid">
+    <div class="p-col-5">
+      <p-calendar [(ngModel)]="searchDto.gteDeadline" [showIcon]="true" dateFormat="yy-mm-dd" dataType="string"></p-calendar>
+    </div>
+    <div class="p-col-2">
+      <div style="text-align:center">-</div>
+    </div>
+    <div class="p-col-5">
+      <p-calendar [(ngModel)]="searchDto.lteDeadline" [showIcon]="true" dateFormat="yy-mm-dd" dataType="string"></p-calendar>
+    </div>
+  </div>
+  <!-- <div class="ui-sidebar-control">
+    <p-calendar [(ngModel)]="searchDto.deadline" [showIcon]="true" dateFormat="yy-mm-dd" dataType="string"></p-calendar>
+  </div> -->
+  <div class="ui-sidebar-label">{{cs.L('working-list.search.receiveTime')}}</div>
+  <div class="p-grid">
+    <div class="p-col-5">
+      <p-calendar [(ngModel)]="searchDto.gteReceiveTime" [showIcon]="true" dateFormat="yy-mm-dd" dataType="string"></p-calendar>
+    </div>
+    <div class="p-col-2">
+      <div style="text-align:center">-</div>
+    </div>
+    <div class="p-col-5">
+      <p-calendar [(ngModel)]="searchDto.lteReceiveTime" [showIcon]="true" dateFormat="yy-mm-dd" dataType="string"></p-calendar>
+    </div>
+  </div>
+  <!-- <div class="ui-sidebar-control">
+    <p-calendar [(ngModel)]="searchDto.createTime" [showIcon]="true" dateFormat="yy-mm-dd" dataType="string"></p-calendar>
+  </div> -->
+  <div class="ui-sidebar-label">{{cs.L('working-list.search.completeTime')}}</div>
+  <div class="p-grid">
+    <div class="p-col-5">
+      <p-calendar [(ngModel)]="searchDto.gteCompleteTime" [showIcon]="true" dateFormat="yy-mm-dd" dataType="string"></p-calendar>
+    </div>
+    <div class="p-col-2">
+      <div style="text-align:center">-</div>
+    </div>
+    <div class="p-col-5">
+      <p-calendar [(ngModel)]="searchDto.lteCompleteTime" [showIcon]="true" dateFormat="yy-mm-dd" dataType="string"></p-calendar>
+    </div>
+  </div>
+  <div class="ui-sidebar-label">{{cs.L('working-list.search.process')}}</div>
+  <div class="ui-sidebar-control">
+      <p-dropdown [(ngModel)]="searchDto.processId" [options]="searchProcessOptions" placeholder="Select Process" [showClear]="true" (onChange)="changeSearchProcessOptions($event)"></p-dropdown>
+  </div>
+  <div class="ui-sidebar-label">{{cs.L('working-list.search.status')}}</div>
+  <div class="ui-sidebar-control">
+      <p-dropdown [(ngModel)]="searchDto.businessStatus" [options]="searchStatusOptions" placeholder="Select Status" [showClear]="true" (onChange)="changeSearchStatusOptions($event)"></p-dropdown>
+  </div>
+  <div class="ui-sidebar-label"></div>
+  <div class="p-grid">
+    <div class="p-col-6">
+        <p-checkbox [(ngModel)]="searchDto.isCompleted" binary="true"></p-checkbox>
+        {{cs.L('working-list.search.isCompleted')}}
+    </div>
+    <div class="p-col-6">
+        <p-checkbox [(ngModel)]="searchDto.isTerminated" binary="true"></p-checkbox>
+        {{cs.L('working-list.search.isTerminated')}}
+    </div>
+  </div>
+  <!-- <div class="ui-sidebar-control">
+    <p-calendar [(ngModel)]="searchDto.completeTime" [showIcon]="true" dateFormat="yy-mm-dd" dataType="string"></p-calendar>
+  </div> -->
+  <!-- <div class="ui-sidebar-label">{{cs.L('working-list.search.priority')}}</div>
+  <div class="ui-sidebar-control">
+    <p-dropdown [(ngModel)]="searchDto.priorityName" [options]="priorityOptions"></p-dropdown>
+  </div> -->
+  <div class="ui-sidebar-buttons">
+    <button pButton type="button" (click)="reset()" [label]="cs.L('reset')" class="ui-button-secondary"></button>
+    <button pButton type="button" (click)="search()" [label]="cs.L('working-list.searchBtn')" class="ui-button-info"></button>
+  </div>
+</smsf-sidebar>

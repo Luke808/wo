@@ -1,0 +1,174 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>new image window</title>
+        <style type="text/css">
+            body {
+                padding: 0px;
+                margin: 0px;
+                width: 100%;
+                height: 100%;
+            }
+    
+            div {
+                width: 100%;
+                height: 100%;
+                overflow: auto;
+            }
+    
+            img {
+                vertical-align: middle;
+                border: 1px;
+                display: block;
+                width: 100%;
+                height: auto;
+            }
+    
+            .focus {
+                border: 5px solid #ff4a00;
+            }
+        </style>
+    </head>
+    
+<body>
+  <div>
+    <button onclick="zoomIn()">放大</button><button onclick="zoomOut()">缩小</button>
+    <button onclick="left()">左旋转</button><button onclick="right()">右旋转</button>
+  </div>
+  <div class="content">
+    <div id="root" class="col-md-11" style="padding-right: 0">
+        <div id="image">
+            <img id="img" src="./init.png" alt="" data-percent="100" />
+        </div>
+    </div>
+  </div>
+  <script src="./jquery-1.11.2.min.js"></script>
+  <script src="./jquery.canvasimg.js"></script>
+  <script>
+        var index = 1;
+
+        var showImgHideCanvas = function () {
+            $("#img").show();
+            $("#image").find('canvas').hide();
+        }
+
+        var hideImgShowCanvas = function () {
+            $("#img").hide();
+            $("#image").find('canvas').show();
+        }
+
+        var imgConvertCanvas = function () {
+            $('#img').canvasimg().canvasimg('normal');
+            hideImgShowCanvas();
+        };
+
+        var zoomIn = function () {
+            // setHeight();
+            $('#img').canvasimg().canvasimg('zoomin');
+            return false;
+        }
+
+        var zoomOut = function () {
+            // setHeight();
+            $('#img').canvasimg().canvasimg('zoomout');
+            return false;
+        }
+
+        var left = function () {
+            // setHeight();
+            $('#img').canvasimg().canvasimg('left');
+            return false;
+        }
+
+        var right = function () {
+            // setHeight();
+            $('#img').canvasimg().canvasimg('right');
+            return false;
+        }
+
+        window.onload = function () {
+            //页面载入完毕，直接把img转成canvas
+            imgConvertCanvas();
+            function setHeight() {
+                var windowHeight = $(window).height() - 12;
+                if ($('#root').height() > windowHeight) {
+                    $('#root').height(windowHeight);
+                }
+            }
+            
+            // 获取url参数
+            var params = window.location.search.substring(1);
+            console.log('params------',params);
+
+            //$(window).resize(function () {
+            //    setHeight();
+            //});
+
+            $(document).keydown(function (e, n) {
+                hideImgShowCanvas()
+                if (e.keyCode == 107 || e.keyCode == 187 || e.keyCode == 61) {
+                    setHeight();
+                    $('#img').canvasimg().canvasimg('zoomin');
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                }
+                    //-
+                else if (e.keyCode == 109 || e.keyCode == 189 || e.keyCode == 173) {
+                    setHeight();
+                    $('#img').canvasimg().canvasimg('zoomout');
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                }
+                    //*
+                else if (e.keyCode == 106 || e.keyCode == 56) {
+                    setHeight();
+                    $('#img').canvasimg().canvasimg('zoomreset');
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                }
+                    //R
+                else if (e.keyCode == 82) {
+                    if (e.shiftKey) {
+                        $('#img').canvasimg().canvasimg('left');
+                    }
+                    else {
+                        $('#img').canvasimg().canvasimg('right');
+                    }
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                }
+                //else if (e.keyCode == 13) {
+                //    nextImage();
+                //}
+            });
+
+        }
+
+        // function changeImg(i, src) {
+        //     index = i;
+        //     $("#img").attr('src', src);
+        //     imgConvertCanvas();
+        //     $("#thumbnailContainer > a").removeClass("focus");
+        //     $("#thumbnailContainer > a:eq(" + (i - 1) + ")").addClass("focus");
+
+        // }
+
+        // function change() {
+        //     var index = $("#image").val();
+        //     var elements = $("#thumbnailContainer").children();
+        //     if (index <= elements.length) {
+        //         var src = $("div>a:eq(" + (index - 1) + ")>img").attr("src");
+        //         changeImg(index, src);
+        //     }
+        // }
+    </script>
+</body>
+</html>
+  

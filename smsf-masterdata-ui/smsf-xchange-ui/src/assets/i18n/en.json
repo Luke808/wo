@@ -1,0 +1,375 @@
+{
+  "xchange": {
+    "title": "XChange",
+    "data": {
+      "id": "ID"
+    },
+    "message": {
+      "error": "Error",
+      "fail": "Failure",
+      "success": "Success",
+      "deleteConfirmation": "Delete [{{name}}] ?",
+      "deleteMultipleConfirmation": "Are you sure to delete all selected items?",
+      "deleteSuccessful": "Delete Successful",
+      "deleteFailed": "Delete Failed",
+      "unknownError": "Unknown Error！",
+      "noAuth": "noAuth，please contact administrator!",
+      "addSuccess": "Add Success",
+      "updateSuccess": "Update Success",
+      "saveSuccess": "Save Success",
+      "inValidData": "InValid Data",
+      "alertTitle": "InValid Operation",
+      "noSuchData": "No Such Data",
+      "duplicateData": "Duplicated Data",
+      "operationFail": "Operation Failed",
+      "operationSuccess": "Operation Success",
+      "errorCode": {
+        "10006": "no data",
+        "31004": "the case has assigned.",
+        "30400": "ssssss",
+        "34000": "data not exist",
+        "34001": "update data not exist",
+        "34002": "primary key duble",
+        "34003": "data convert exception",
+        "34100": "get login user failed.",
+        "34101": "Business Case Data is not exists.",
+        "34102": "Transaction call accept exception.",
+        "34103": "The case is locked by others.",
+        "34104": "Organization call employeeFindOne exception.",
+        "34105": "Can not get employee by eid.",
+        "34106": "Organization call getOrganization exception.",
+        "34107": "The data no auth to current user.",
+        "34108": "Attachment download cannot find the file",
+        "34109": "Data is in use, can not delete it.",
+        "34110": "Can not get organization by id.",
+        "34111": "Template error!",
+        "34112": "Template mismatch!",
+        "34113": "Case was completed or terminated, invalid operation!"
+      }
+    },
+    "reset": "Reset",
+    "return": "Return",
+    "nonData": "No data yet",
+    "number": "No.",
+    "add": "New",
+    "operation": "Action",
+    "edit": "Edit",
+    "delete": "Delete",
+    "createTime": "Create Time",
+    "batchDelete": "Batch Delete",
+    "goToHome": "Go To Home",
+    "pleaseLogin": "Please Login",
+    "welcomeName": "Welcome {{name}}！",
+    "save": "Save",
+    "cancel": "Cancel",
+    "showAllApp": "showAllApp",
+    "download": "download",
+    "upload": "upload",
+    "home": {
+      "title": "zh title",
+      "select": "Change language"
+    },
+    "noncompliance": {
+      "title": "NonCompliance",
+      "detailTitle": "NonCompliance Info",
+      "edit": {
+        "editTitle": "Edit NonCompliance",
+        "addTitle": "Add NonCompliance"
+      },
+      "data": {
+        "action": "Action",
+        "closed": "Closed",
+        "ncType": "Type",
+        "operator": "Operator",
+        "description": "Description",
+        "createTime": "Create Time",
+        "feedback": "FeedBack",
+        "feedbackTime": " Feedback Time",
+        "closeTime": "Close Time"
+      },
+      "message": {
+        "alertTitle": "NonCompliance",
+        "ncTypeIsNotNull": "NC Type is not null.",
+        "descriptionIsNotNull": "Description is not null.",
+        "closeComfirm": "Are you sure to close this noncompliance?",
+        "deleteSingle": "Are you sure to delete this record?"
+      }
+    },
+    "template": {
+      "title": "Template",
+      "data": {
+        "name": "Template Name",
+        "businessObject": "Business Object",
+        "componentName": "Template Component Name",
+        "description": "Description",
+        "businessProperty": "Business Property",
+        "component": "Component",
+        "componentParam": "Component Param",
+        "index": "Index",
+        "directive": "Directive",
+        "width": "Width",
+        "layout": "Layout",
+        "process": "Process",
+        "steps": "Steps",
+        "parameter": "Parameters",
+        "enable": "Enable"
+      },
+      "index": {
+        "title": "Template List",
+        "basicInfoTitle": "Basic Information"
+      },
+      "edit": {
+        "title": "Edit Template",
+        "directive": {
+          "title": "Edit Element Directive",
+          "tableTitle": "List"
+        }
+      },
+      "message": {
+        "selectBusinessObjectFirst": "Please select business object first!",
+        "selectProcessObjectFirst": "Please select process first!",
+        "required": "This filed is required!",
+        "maxLength": "this filed is bigger than max length allowed!",
+        "minLength": "this filed is less than min length allowed!"
+      }
+    },
+    "businessObject": {
+      "no": "No",
+      "name": "Name",
+      "parameters": "Parameters",
+      "description": "Description",
+      "appTitle": "Business Object",
+      "index": {
+        "appData": "Business Object List",
+        "addApp": "Add",
+        "deleteApp": "Delete",
+        "no": "No",
+        "name": "Name",
+        "businessDomain": "Business Domain",
+        "description": "Description"
+      },
+      "edit": {
+        "appTitle": "Edit Business Object",
+        "appData": "Business Object",
+        "editTitle": "Edit",
+        "basicInfoTitle": "Basic Info.",
+        "backBtn": "Back",
+        "saveBtn": "Save",
+        "type": "Type",
+        "id": "ID",
+        "parentObject": "Parent Object",
+        "name": "Name",
+        "businessDomain": "Business Domain",
+        "description": "Description",
+        "table": {
+          "title": "Property Info.",
+          "no": "No",
+          "action": "Action",
+          "validation": "Validation",
+          "name": "Name",
+          "dataType": "Data Type",
+          "length": "Length",
+          "mappingColumn": "DB Field",
+          "label": "Label",
+          "displayIndex": "Display Index",
+          "description": "Description"
+        },
+        "validation": {
+          "editTitle": "Property Validation Setting",
+          "operation": "Action",
+          "id": "Property Id",
+          "name": "Property Name",
+          "no": "No.",
+          "validation": "Validation",
+          "parameters": "Parameters"
+        }
+      },
+      "add": {
+        "addTitle": "Add"
+      },
+      "message": {
+        "alertTitle": "application",
+        "nameIsNotNull": "Name is not null.",
+        "propertyIdIsNotNull": "please save property then add validations.",
+        "tableDataIsNull": "please input tabledata then save.",
+        "columnIsNotUnique": "tabledata[{{column}}]is not unionque,[{{value}}]"
+      }
+    },
+    "component": {
+      "id": "Id",
+      "no": "No",
+      "name": "Name",
+      "parameters": "Parameters",
+      "description": "Description",
+      "index": {
+        "appTitle": "Component",
+        "appData": "Component Data",
+        "addApp": "Add",
+        "deleteApp": "Delete"
+      },
+      "edit": {
+        "editTitle": "Edit Component"
+      },
+      "add": {
+        "addTitle": "Add Component"
+      },
+      "message": {
+        "alertTitle": "Component",
+        "nameIsNotNull": "Name is not null."
+      }
+    },
+    "directive": {
+      "id": "Id",
+      "no": "No",
+      "name": "Name",
+      "parameters": "Parameters",
+      "description": "Description",
+      "index": {
+        "appTitle": "Directive",
+        "appData": "Directive Data",
+        "addApp": "Add",
+        "deleteApp": "Delete"
+      },
+      "edit": {
+        "editTitle": "Edit Directive"
+      },
+      "add": {
+        "addTitle": "Add Directive"
+      },
+      "message": {
+        "alertTitle": "Directive",
+        "nameIsNotNull": "Name is not null."
+      }
+    },
+    "formatValidationRule": {
+      "id": "Id",
+      "no": "No",
+      "name": "Name",
+      "validateType": "Validate Type",
+      "validateExpression": "Validate Expression",
+      "messages": "Messages",
+      "index": {
+        "appTitle": "Format Validation Rule",
+        "appData": "Format Validation Rule Data",
+        "addApp": "Add",
+        "deleteApp": "Delete"
+      },
+      "edit": {
+        "editTitle": "Edit Format Validation Rule"
+      },
+      "add": {
+        "addTitle": "Add Format Validation Rule"
+      },
+      "message": {
+        "alertTitle": "Format Validation Rule",
+        "nameIsNotNull": "Name is not null."
+      }
+    },
+    "working-list": {
+      "no": "Reference No.",
+      "client-service-level": "Client Service Level",
+      "business-status": "Status",
+      "data-status": "Data Status",
+      "deadline": "Deadline",
+      "sla": "SLA",
+      "sla-hour": "H",
+      "sla-minute": "M",
+      "receive-time": "Receive Time",
+      "complete-time": "Complete Time",
+      "operator-name": "Operator",
+      "priority": "Priority",
+      "process": "Process",
+      "stepName": "Step",
+      "stepType": "Step Type",
+      "searchBtn": "Search",
+      "confirmBtn": "Confirm",
+      "bantchReassignBtn": "Reassign",
+      "message":{
+        "authCheckMsg": "The case is completed or terminate.",
+        "hasPending": "The case has Pendinged. do not duplicate operate."
+      },
+      "search": {
+        "title": "Search",
+        "basicInfoTitle": "Search Condition",
+        "searchType": "Search Type",
+        "referenceNo": "Reference No",
+        "dataStatus": "Data Status",
+        "deadLine": "Dead Line",
+        "receiveTime": "Receive Time",
+        "completeTime": "Complete Time",
+        "priority": "Priority",
+        "process": "Process",
+        "status": "Status",
+        "isCompleted": "Is Completed",
+        "isTerminated": "Is Terminated"
+      },
+      "selectPerson": {
+        "title": "Select Person",
+        "basicInfoTitle": "Search Condition",
+        "eid": "Eid",
+        "name": "Name"
+      },
+      "searchAuthTypeOptions": {
+        "ALL": "All",
+        "MYTASK": "My Task"
+      },
+      "index": {
+        "appTitle": "My Task",
+        "appData": "Xchange",
+        "appName": "My Task",
+        "exportApp": "Export",
+        "pauseApp": "Pause",
+        "transaferApp": "Transafer",
+        "reassignApp": "Reassign",
+        "terminateApp": "Terminate",
+        "autoAssign": "Start"
+      }
+    },
+    "working-portal": {
+      "index": {
+        "appTitle": "Working Portal",
+        "switchBtn": "Switch",
+        "pauseBtn": "Pause",
+        "resumeBtn": "Resume",
+        "transferBtn": "Transfer",
+        "reassignBtn": "Reassign",
+        "terminateBtn": "Terminate",
+        "saveBtn": "Save",
+        "commitBtn": "Commit",
+        "returnBtn": "Return",
+        "zoominBtn": "Zoomin",
+        "zoomoutBtn": "Zoomout",
+        "leftBtn": "Left",
+        "rightBtn": "Right",
+        "popBtn": "Pop"
+      },
+      "message": {
+        "nextConfirmWithNewTask": "Submit successfully, get new tasks automatically?",
+        "nextConfirmWithoutTask": "Submit successfully, automatically enter the task list?"
+      },
+      "common-information": {
+        "title": "Common Information",
+        "data": {
+          "businessStatus": "Business Status",
+          "comments": "Comments",
+          "deadline": "Deadline",
+          "referenceNo": "Reference No",
+          "stepId": "Step"
+        }
+      },
+      "attachment": {
+        "title": "Attachments",
+        "type": "Type",
+        "fileName": "File Name",
+        "status": "Status",
+        "chooseFile": "Choose File",
+        "alertTitle": "Attachment",
+        "deleteConfirmation": "Delete [{{attachmentName}}] ?",
+        "mess": {
+          "error_34000": "Not find BusinessCaseID from BusinessCase",
+          "error_34108": "Attachment Download Error"
+        }
+      }
+    }
+  }
+}

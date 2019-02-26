@@ -1,0 +1,84 @@
+<!-- <p-panel [header]="cs.L('noncompliance.title')" [toggleable]="true" 
+expandIcon="pi pi-chevron-down" collapseIcon="pi pi-chevron-up"> -->
+
+<div class="ui-g" >
+    <div #actionButton class="ui-g-12">
+        <p-button icon="fas fa-plus" (click)="create()" [label]="cs.L('add')" *ngIf="isDisabled !== true"></p-button>
+        <!-- <button pButton type="button" (click)="create()" icon="fas fa-plus" [label]="cs.L('add')"
+        class="ui-button-success"></button> -->
+        <!-- <button pButton type="button" icon="fas fa-trash-alt" [label]="cs.L('batchDelete')" class="ui-button-danger"
+                (click)="deleteAll(selectedContent)"></button> -->
+        <button pButton type="button" (click)="reload()" icon="fas fa-sync" class="ui-button-action"></button>
+    </div>
+    
+    <div #listData class="ui-g-12 padding-t-0">
+      <p-table #pTable [value]="content" [loading]="loading"
+               [paginator]="false" [rows]="size" [totalRecords]="totalElements"
+               [rowsPerPageOptions]="[10,20,30]" [pageLinks]="3" [rowHover]="true"
+               [lazy]="true" (onLazyLoad)="lazyLoad($event)" dataKey="id" >
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th style="width: 3em">
+              <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+            </th>
+            <th style="width: 4em">{{cs.L('number')}}
+            </th>
+            <th style="width: 6em" class="text-center">{{cs.L('operation')}}</th>
+            <th style="width: 6em" class="text-center">{{cs.L('noncompliance.data.closed')}}</th>
+            <th>{{cs.L('noncompliance.data.ncType')}}</th>
+            <th>{{cs.L('noncompliance.data.operator')}}</th>
+            <!-- <th>{{cs.L('noncompliance.data.description')}}</th> -->
+            <th>{{cs.L('noncompliance.data.createTime')}}</th>
+            <!-- <th>{{cs.L('noncompliance.data.feedback')}}</th> -->
+            <th>{{cs.L('noncompliance.data.feedbackTime')}}</th>
+            <!-- <th>{{cs.L('noncompliance.data.closeTime')}}</th> -->
+          </tr>
+        </ng-template>
+  
+        <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+          <tr [pSelectableRow]="rowData">
+            <td>
+              <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+            </td>
+            <td>
+              {{i+1}}
+            </td>
+            <td class="operation" align="center">
+              <a [title]="cs.L('edit')" href="javascript:void(0);" (click)="modify(rowData)" *ngIf="isDisabled !== true">
+                <i class="fas fa-pencil-alt"></i>
+              </a>
+              <!-- <a [title]="cs.L('delete')" class="action-delete" href="javascript:void(0);"
+                 (click)="deleteOne(rowData)">
+                <i class="fas fa-trash-alt"></i>
+              </a> -->
+            </td>
+            <td>
+                <p-inputSwitch [(ngModel)]="rowData.closed" [disabled] ="true"></p-inputSwitch>
+            </td>
+
+            <!-- <td>
+              <p-inputSwitch [(ngModel)]="rowData.closed" (onChange)="closeNC($event)"></p-inputSwitch>
+            </td> -->
+
+            <!-- <td>{{rowData.closed | customerFormat}}</td> -->
+            <td>{{rowData.ncTypeName}}</td>
+            <td>{{rowData.operatorName}}</td>
+            <!-- <td>{{rowData.description}}</td> -->
+            <td>{{rowData.createTime | date: 'yyyy-MM-dd HH:mm'}}</td>
+            <!-- <td>{{rowData.feedback}}</td> -->
+            <td>{{rowData.feedbackTime | date: 'yyyy-MM-dd HH:mm'}}</td>
+            <!-- <td>{{rowData.endTime | date: 'yyyy-MM-dd HH:mm'}}</td> -->
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td [attr.colspan]="8">
+              {{cs.L('nonData')}}
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+<!-- </p-panel> -->
+  <app-noncompliance-edit #editSidebar (reload)="reload()" [searchId]="searchId"></app-noncompliance-edit>

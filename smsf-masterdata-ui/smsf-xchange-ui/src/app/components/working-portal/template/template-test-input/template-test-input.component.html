@@ -1,0 +1,65 @@
+
+<p-panel header="流程疏通" [toggleable]="true">
+    <div class="ui-g ui-fluid">
+            <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+                <div><label for="name">用户名</label></div>
+                <div>
+                            <input type="text"     id="name" name="name"
+        #string01NgModel="ngModel"
+        [(ngModel)]="model.string01"
+ pInputText>
+                </div>
+            </div>
+            <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+                <div><label for="age">年龄</label></div>
+                <div>
+                            <p-spinner     id="age" name="age"
+        #number01NgModel="ngModel"
+        [(ngModel)]="model.number01"
+
+                                    [min]="number01.parameterValue.min"
+                                    [max]="number01.parameterValue.max">
+                            </p-spinner>
+                </div>
+            </div>
+            <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+                <div><label for="check">分支判断</label></div>
+                <div>
+                            <input type="text"     id="check" name="check"
+        #string04NgModel="ngModel"
+        [(ngModel)]="model.string04"
+        integer="1"        email="3" pInputText>
+                        <div *ngIf="string04NgModel.invalid && (string04NgModel.dirty || string04NgModel.touched)">
+                                <p-message severity="error"
+                                           text="item must an integer"
+                                           *ngIf="string04NgModel.errors['integer']"></p-message>
+                                <p-message severity="error"
+                                           text="item must be an email address"
+                                           *ngIf="string04NgModel.errors['email']"></p-message>
+                        </div>
+                </div>
+            </div>
+            <div [class.ui-g-6]="!isFullScreen" [class.ui-g-3]="isFullScreen">
+                <div><label for="countDown">倒计时</label></div>
+                <div>
+                            <app-count-down     id="countDown" name="countDown"
+
+                                    [countDownToStr]="model.string05"></app-count-down>
+                </div>
+            </div>
+            <div [class.ui-g-12]="!isFullScreen" [class.ui-g-6]="isFullScreen">
+                <div><label for="dropDown">数据源下拉列表</label></div>
+                <div>
+                            <p-dropdown     id="dropDown" name="dropDown"
+        #string06NgModel="ngModel"
+        [(ngModel)]="model.string06"
+
+                                    placeholder="Select..."
+                                    [autoWidth]="false"
+                                    [options]="string06.parameterValue.options"></p-dropdown>
+                </div>
+            </div>
+    </div>
+</p-panel>
+
+

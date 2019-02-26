@@ -1,0 +1,70 @@
+<smsf-sidebar [title]="cs.L('businessObject.edit.validation.editTitle')" position="right"
+styleClass="ui-sidebar-lg" [(visible)]="sidebarVisible">
+  <div class="ui-sidebar-label">{{cs.L('businessObject.edit.validation.id')}}</div>
+  <div class="ui-sidebar-control">
+    <input class="form-control" type="text" pInputText [(ngModel)]="formData.propertyId" readonly style="width:50%"/>
+  </div>
+  <div class="ui-sidebar-label">{{cs.L('businessObject.edit.validation.name')}}</div>
+  <div class="ui-sidebar-control">
+    <input class="form-control" type="text" pInputText [(ngModel)]="formData.propertyName" readonly style="width:50%" />
+  </div>
+  <div class="ui-g-12 padding-lr-0">
+    <div class="ui-g-12 ui-fluid padding-lr-0">
+      <p-table #table [value]="formData.propertyValidations" [lazy]="true" (onLazyLoad)="loadData()"
+       dataKey="id" [rowHover]="true" selectionMode="multiple" [(selection)]="tableSelectedRows" [scrollable]="true" [style]="{width:'100%'}">
+      <ng-template pTemplate="header" let-columns>
+        <tr class="bt">
+          <th style="width:40px" class="text-center">{{cs.L('businessObject.edit.validation.no')}}</th>
+          <th style="width:80px" class="text-center">
+            {{cs.L('businessObject.edit.validation.operation')}}
+            <a [title]="cs.L('delete')" href="#" (click)="add($event)">
+                <i class="fas fa-plus"></i>
+            </a>
+          </th>
+          <th style="width:200px">{{cs.L('businessObject.edit.validation.validation')}}</th>
+          <th style="width:200px">{{cs.L('businessObject.edit.validation.parameters')}}</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData let-columns="columns" let-rowIndex="rowIndex">
+        <tr [pSelectableRow]="rowData">
+          <td style="width:40px" class="text-center">
+            {{rowIndex + 1}}
+          </td>
+          <td style="width:80px" class="operation text-center">
+            <a [title]="cs.L('delete')" class="action-delete" href="#" (click)="delete($event, rowIndex)">
+              <i class="fas fa-trash-alt"></i>
+            </a>
+          </td>
+          <td style="width:200px" pEditableColumn>
+              <p-cellEditor>
+                  <ng-template pTemplate="input">
+                      <p-dropdown [options]="validationOptions" [(ngModel)]="rowData.formatValidationRuleNId"
+                                  optionLabel="name" placeholder="Select Role"  [style]="{'width':'100%'}"
+                                  required (onChange)="changeValidationOptions($event, rowData)" appendTo="body"></p-dropdown>
+                  </ng-template>
+                  <!-- (onChange)="changeValidationOptions($event, rowData)" -->
+                  <ng-template pTemplate="output">
+                      {{rowData.formatValidationRuleName}}
+                  </ng-template>
+              </p-cellEditor>
+          </td>
+          <td style="width:200px" pEditableColumn>
+              <p-cellEditor>
+                  <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="rowData.parameter">
+                  </ng-template>
+                  <ng-template pTemplate="output">
+                      {{rowData.parameter}}
+                  </ng-template>
+              </p-cellEditor>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+    </div>
+  </div>
+  <div class="ui-sidebar-buttons">
+    <button pButton type="button" (click)="close()" [label]="cs.L('cancel')" class="ui-button-secondary"></button>
+    <button pButton type="button" (click)="save()" [label]="cs.L('save')" class="ui-button-info"></button>
+  </div>
+</smsf-sidebar>

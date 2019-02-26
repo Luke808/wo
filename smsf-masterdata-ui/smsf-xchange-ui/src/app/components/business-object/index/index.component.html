@@ -1,0 +1,83 @@
+<div class="ui-g">
+  <div class="ui-g-12 ui-g-padding-15">
+    <smsf-toolbar [title]="cs.L('title')"
+                  [subTitle]="[cs.L('businessObject.appTitle')]"
+                   [total]="totalRecords"
+                   iconClass="fa fa-briefcase" iconBackGroundColor="#20C997">
+      <button pButton type="button" [routerLink]="['business-object-edit']" [queryParams]="{paramId:'', oprationType: 'addParent'}" icon="fas fa-plus" [label]="cs.L('businessObject.index.addApp')" class="ui-button-success"></button>
+      <button pButton type="button" (click)="deleteBatch()" icon="fas fa-trash-alt" [label]="cs.L('businessObject.index.deleteApp')" class="ui-button-danger"></button>
+      <button pButton type="button" icon="fas fa-filter" class="ui-button-action"></button>
+    </smsf-toolbar>
+  </div>
+</div>
+<div class="ui-g">
+  <div class="ui-g-12 padding-t-0">
+    <p-treeTable [value]="treedatas" [columns]="cols" [paginator]="true" [rows]="pageSize" [lazy]="true" [rowHover]="true" selectionMode="checkbox" [(selection)]="selectedNodes"
+    (onLazyLoad)="loadNodes($event)" [totalRecords]="totalRecords" [loading]="loading" (onNodeExpand)="onNodeExpand($event)" [scrollable]="true" [style]="{width:'100%'}">
+    <!-- selectionMode="single" [(selection)]="selectedNode1"  -->
+    <!-- <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th *ngFor="let col of columns">
+                {{col.header}}
+            </th>
+        </tr>
+    </ng-template> -->
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th style="width:40px" class="text-center">
+        </th>
+        <th style="width:50px" class="text-center">
+          <p-treeTableHeaderCheckbox></p-treeTableHeaderCheckbox>
+        </th>
+        <th style="width:50px" class="text-center">{{cs.L('businessObject.index.no')}}</th>
+        <th style="width:110px" class="text-center">{{cs.L('operation')}}</th>
+        <th style="width:200px">{{cs.L('businessObject.index.name')}}</th>
+        <th style="width:300px">{{cs.L('businessObject.index.businessDomain')}}</th>
+        <th style="width:500px">{{cs.L('businessObject.index.description')}}</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowNode let-rowData="rowData" let-columns="columns">
+        <!-- <tr>
+            <td *ngFor="let col of columns; let i = index">
+                <p-treeTableToggler [rowNode]="rowNode" *ngIf="i == 0"></p-treeTableToggler>
+                {{rowData[col.field]}}
+            </td>
+        </tr> -->
+        <tr [ttSelectableRow]="rowNode">
+            <td style="width:40px" class="text-center">
+                <p-treeTableToggler [rowNode]="rowNode"></p-treeTableToggler>
+            </td>
+            <td style="width:50px" [ngStyle]="{'text-align':rowData.isOpened ? 'right' : 'center' }" >
+                <p-treeTableCheckbox [value]="rowNode"></p-treeTableCheckbox>
+            </td>
+            <td style="width:50px" [ngStyle]="{'text-align':rowData.isOpened ? 'right' : 'center' }">
+                {{rowData.rowNum}}
+            </td>
+            <td style="width:110px" class="operation text-center">
+                <!-- <a [title]="cs.L('add')" class="plus-circle"  [routerLink]="['business-object-edit']" [queryParams]="{paramId:rowData.id, oprationType:'addChild'}">
+                    <i class="fas fa-plus-circle"></i>
+                </a>
+                &nbsp;&nbsp;&nbsp;&nbsp; -->
+              <a [title]="cs.L('edit')" [routerLink]="['business-object-edit']" [queryParams]="{paramId:rowData.id, oprationType: 'addParent'}">
+                <i class="fas fa-pencil-alt"></i>
+              </a>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              <a [title]="cs.L('delete')" class="action-delete" href="#" (click)="delete($event, rowData)">
+                <i class="fas fa-trash-alt"></i>
+              </a>
+            </td>
+            <td style="width:200px">{{rowData.name}}</td>
+            <td style="width:300px">{{rowData.businessDomain}}</td>
+            <td style="width:500px">{{rowData.description}}</td>
+        </tr>
+    </ng-template>
+    <!-- <ng-template pTemplate="footer" let-columns>
+        <tr>
+            <td>
+                共{{treedatas.length}}条
+            </td>
+        </tr>
+    </ng-template> -->
+</p-treeTable>
+  </div>
+</div>

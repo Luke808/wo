@@ -1,0 +1,42 @@
+<div class="p-grid margin-t-0">
+  <div class="p-col-12">
+    <smsf-toolbar [title]="cs.L('title')"
+                  [subTitle]="[cs.L('working-portal.index.appTitle')]"
+                  iconClass="fab fa-joomla" iconBackGroundColor="#F62D51">
+      <button pButton type="button" (click)="return()" icon="fa fa-arrow-left"
+              [label]="cs.L('working-portal.index.returnBtn')" class="ui-button-action"></button>
+      <button pButton type="button" (click)="switch()" icon="fa fa-window-restore"
+              [label]="cs.L('working-portal.index.switchBtn')" class="ui-button-action"></button>
+      <p-toggleButton [(ngModel)]="isDoingTask" (onChange)="switchStatus($event)" [disabled]="!hasPermission"
+                      [onLabel]="cs.L('working-portal.index.pauseBtn')"
+                      [offLabel]="cs.L('working-portal.index.resumeBtn')" onIcon="fa fa-pause-circle"
+                      offIcon="fa fa-play-circle" [style]="{'margin-right':'5px'}"></p-toggleButton>
+      <button pButton type="button" (click)="transfer()" icon="fa fa-retweet"
+              [label]="cs.L('working-portal.index.transferBtn')" class="ui-button-action"
+              [disabled]="!hasPermission"></button>
+      <button pButton type="button" (click)="reassign()" icon="fa fa-reply-all"
+              [disabled]="!hasPermission"
+              [label]="cs.L('working-portal.index.reassignBtn')" class="ui-button-action"></button>
+      <button pButton type="button" (click)="terminate()" icon="fa fa-stop-circle"
+              [disabled]="!hasPermission"
+              [label]="cs.L('working-portal.index.terminateBtn')" class="ui-button-danger"></button>
+      <button pButton type="button" (click)="save()" icon="fa fa-save"
+              [disabled]="!hasPermission"
+              [label]="cs.L('working-portal.index.saveBtn')" class="ui-button-success"></button>
+      <button pButton type="button" (click)="commit()" icon="fa fa-check"
+              [disabled]="!hasPermission && (optComponent?!optComponent.optForm.form.valid:false)"
+              [label]="cs.L('working-portal.index.commitBtn')" class="ui-button-info"></button>
+    </smsf-toolbar>
+    <p-messages [value]="msgs" [enableService]="false"></p-messages>
+  </div>
+  <div class="p-col-12 padding-t-0" *ngIf="workingPortalDTO">
+    <div class="p-grid">
+      <div class="p-col" *ngIf="showMedia">
+        <app-working-portal-media [id]="id"></app-working-portal-media>
+      </div>
+      <div class="p-col">
+        <app-working-portal-opt></app-working-portal-opt>
+      </div>
+    </div>
+  </div>
+</div>

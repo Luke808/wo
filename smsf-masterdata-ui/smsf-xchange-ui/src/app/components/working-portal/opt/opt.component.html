@@ -1,0 +1,36 @@
+<div class="p-grid">
+  <div class="p-col-12">
+    <p-panel [toggleable]="true">
+      <p-header>
+        {{cs.L('working-portal.common-information.title')}}
+      </p-header>
+      <app-working-portal-opt-common-info>
+      </app-working-portal-opt-common-info>
+    </p-panel>
+  </div>
+  <div class="p-col-12">
+    <form #optForm="ngForm">
+      <ng-template xChangeAnchor></ng-template>
+    </form>
+  </div>
+  <div class="p-col-12">
+    <p-panel [toggleable]="true">
+      <p-header>
+        {{cs.L('working-portal.attachment.title')}}
+      </p-header>
+      <app-working-portal-attachment
+        [businessCaseId]="workingPortalDTO.businessCase.id"
+        [fileUploadDisabled]="!workingPortalDTO.hasPermission"
+        [businessDataId]="null"></app-working-portal-attachment>
+    </p-panel>
+  </div>
+  <div class="p-col-12">
+    <p-panel [toggleable]="true">
+      <p-header>
+        {{cs.L('noncompliance.title')}}
+      </p-header>
+      <app-noncompliance-index [isDisabled]="!workingPortalDTO.hasPermission"
+                               [searchId]="workingPortalDTO.businessCase.id"></app-noncompliance-index>
+    </p-panel>
+  </div>
+</div>
